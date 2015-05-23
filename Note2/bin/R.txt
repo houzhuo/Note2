@@ -462,6 +462,7 @@ int layout support_simple_spinner_dropdown_item 0x7f030027
 int menu context 0x7f0e0000
 int menu edit_actionbar_menu 0x7f0e0001
 int menu main 0x7f0e0002
+int menu search 0x7f0e0003
 int string abc_action_bar_home_description 0x7f060002
 int string abc_action_bar_up_description 0x7f060003
 int string abc_action_menu_overflow_description 0x7f060004

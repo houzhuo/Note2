@@ -47,9 +47,8 @@ import com.example.note2.db.NotesDB;
 public class AtyEditNote extends ListActivity {
 
 	private ArcMenu arcMenu;
-	
-	private ListView mListView;
 
+	private ListView mListView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,43 +91,44 @@ public class AtyEditNote extends ListActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);// 设置返回图标
 		actionBar.setDisplayShowHomeEnabled(false);// 没有系统图标
 		actionBar.setHomeButtonEnabled(true);// 设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用，
-		//如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
-		
+		// 如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
+
 		mListView = getListView();
 		registerForContextMenu(mListView);
-		
 
 	}
-	
+
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		// TODO Auto-generated method stub
-		//加载xml中的上下文菜单
+		// 加载xml中的上下文菜单
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.context, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		 AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
 		// 相应上下文的操作
-		  switch (item.getItemId()) {  
-          case R.id.edit:
-      
-              break;  
-          case R.id.share:  
-              Toast.makeText(AtyEditNote.this, "share", Toast.LENGTH_LONG).show();  
-              break;  
-          case R.id.delete:  
-              Toast.makeText(AtyEditNote.this, "delete", Toast.LENGTH_LONG).show();  
-              break;  
-          default:  
-              break;  
-      } 
+		switch (item.getItemId()) {
+		case R.id.edit:
+
+			break;
+		case R.id.share:
+			Toast.makeText(AtyEditNote.this, "share", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.delete:
+			Toast.makeText(AtyEditNote.this, "delete", Toast.LENGTH_LONG)
+					.show();
+			break;
+		default:
+			break;
+		}
 		return super.onContextItemSelected(item);
 	}
-	
-	
+
 	private void initEvent() {
 		arcMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -317,7 +317,7 @@ public class AtyEditNote extends ListActivity {
 		if (noteId > -1) {
 			dbWrite.update(NotesDB.TABLE_NAME_NOTES, cv, NotesDB.COLUMN_NAME_ID
 					+ "=?", new String[] { noteId + "" });
-			
+
 			return noteId;
 		} else {
 			return (int) dbWrite.insert(NotesDB.TABLE_NAME_NOTES, null, cv);
@@ -351,7 +351,6 @@ public class AtyEditNote extends ListActivity {
 	public static final String EXTRA_NOTE_CONTENT = "noteContent";
 
 	static class MediaAdapter extends BaseAdapter {
-		
 
 		public MediaAdapter(Context context) {
 			this.context = context;
@@ -391,20 +390,21 @@ public class AtyEditNote extends ListActivity {
 			TextView tvPath = (TextView) convertView.findViewById(R.id.tvPath);
 
 			ivIcon.setImageResource(data.iconId);
-//			ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
-//					MediaStore.Images.Thumbnails.MICRO_KIND));
+			// ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
+			// MediaStore.Images.Thumbnails.MICRO_KIND));
 			tvPath.setText(data.path);
 			return convertView;
 		}
-		
-//		private Bitmap getVideoThumbnail(String uri, int width, int height,int kind){
-//			Bitmap bitmap = null;
-//			bitmap = ThumbnailUtils.createVideoThumbnail(uri, kind);
-//			bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
-//		
-//			return bitmap;
-//		}
-		
+
+		// private Bitmap getVideoThumbnail(String uri, int width, int
+		// height,int kind){
+		// Bitmap bitmap = null;
+		// bitmap = ThumbnailUtils.createVideoThumbnail(uri, kind);
+		// bitmap = ThumbnailUtils.extractThumbnail(bitmap, width,
+		// height,ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+		//
+		// return bitmap;
+		// }
 
 		private Context context;
 		private List<MediaListCellData> list = new ArrayList<AtyEditNote.MediaListCellData>();
@@ -455,6 +455,7 @@ public class AtyEditNote extends ListActivity {
 		inflater.inflate(R.menu.edit_actionbar_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -462,7 +463,7 @@ public class AtyEditNote extends ListActivity {
 			saveMedia(saveNote());
 			setResult(RESULT_OK);
 			finish();
-		
+
 			return true;
 
 		default:

@@ -3,6 +3,7 @@ package com.example.note2.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.Contacts.Intents.Insert;
 
 public class NotesDB extends SQLiteOpenHelper {
 
@@ -31,7 +32,8 @@ public class NotesDB extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	
 	public static final String TABLE_NAME_NOTES = "notes";
 	public static final String TABLE_NAME_MEDIA = "media";
 	public static final String COLUMN_NAME_ID = "_id";

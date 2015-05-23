@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="18"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,28 +24,22 @@
         <activity
             android:name=".AtySearch"
             android:launchMode="singleTop" >
-           
-            
-               
-            
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/main_page" >
-      
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-             <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            
-              <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
         </activity>
         <activity android:name="AtyEditNote" >
         </activity>

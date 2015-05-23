@@ -14,9 +14,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaActionSound;
 import android.os.Bundle;
+import android.provider.MediaStore.Audio.Media;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
@@ -39,6 +42,8 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.baoyz.swipemenulistview.SwipeMenuListView.OnMenuItemClickListener;
+import com.example.note2.AtyEditNote.MediaAdapter;
+import com.example.note2.AtyEditNote.MediaListCellData;
 import com.example.note2.db.NotesDB;
 
 public class MainActivity extends ListActivity {
@@ -51,7 +56,6 @@ public class MainActivity extends ListActivity {
 
 	private SwipeMenuListView mListView;
 	private int itemId;
-
 
 	private SearchManager searchManager;
 
@@ -87,9 +91,6 @@ public class MainActivity extends ListActivity {
 
 		}
 	};
-	
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,15 +100,13 @@ public class MainActivity extends ListActivity {
 		db = new NotesDB(this);
 		dbRead = db.getReadableDatabase();
 		dbWrite = db.getWritableDatabase();
-		
-	
-	
+
 		adapter = new SimpleCursorAdapter(this, R.layout.notes_list_cell, null,
 				new String[] { NotesDB.COLUMN_NAME_NOTE_NAME,
 						NotesDB.COLUMN_NAME_NOTE_DATE,
 						NotesDB.COLUMN_NAME_NOTE_CONTENT }, new int[] {
 						R.id.tvName, R.id.tvDate, R.id.tvContent });
-		setListAdapter(adapter);		
+		setListAdapter(adapter);
 
 		// 获取并给listview注册上下文菜单(长按)
 		mListView = (SwipeMenuListView) getListView();
@@ -171,8 +170,8 @@ public class MainActivity extends ListActivity {
 		// 开启ActionBar上的APP ICON的功能
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);// 有系统图标
-		getActionBar().setDisplayShowHomeEnabled(false);//设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用，
-		//如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
+		getActionBar().setDisplayShowHomeEnabled(false);// 设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用，
+		// 如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
 
 		/*
 		 * 滑动删除
@@ -219,7 +218,6 @@ public class MainActivity extends ListActivity {
 				Cursor cursor = adapter.getCursor();
 				itemId = cursor.getInt(cursor
 						.getColumnIndex(NotesDB.COLUMN_NAME_ID));
-System.out.println(">>>>>>>>>>>>>>>"+itemId);
 				switch (index) {
 				case 0:
 					dbWrite.delete(NotesDB.TABLE_NAME_NOTES,
@@ -237,32 +235,17 @@ System.out.println(">>>>>>>>>>>>>>>"+itemId);
 			}
 		});
 
-	//setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
+		// setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 
-	
-	/*searchView.setOnQueryTextListener((OnQueryTextListener) this);
-	searchView.setSubmitButtonEnabled(false);*/
+		/*
+		 * searchView.setOnQueryTextListener((OnQueryTextListener) this);
+		 * searchView.setSubmitButtonEnabled(false);
+		 */
 
-	 handleIntent(getIntent());
-	
+
 	}
-	@Override
-    protected void onNewIntent(Intent intent) {
-    	setIntent(intent);
-        handleIntent(intent);
-    }
 
-    private void handleIntent(Intent intent) {
 
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            doMySearch();
-        }
-    }
-
-	private void doMySearch() {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
-	}
 
 	/*
 	 * 根据侧边栏是否打开变换右上角的功能图标??
@@ -288,6 +271,9 @@ System.out.println(">>>>>>>>>>>>>>>"+itemId);
 			startActivityForResult(new Intent(MainActivity.this,
 					AtyEditNote.class), REQUEST_CODE_ADD_NOTE);
 			break;
+		case R.id.action_search:
+			Intent intent = new Intent(MainActivity.this,AtySearch.class);
+			startActivity(intent);
 
 		default:
 			break;
@@ -384,23 +370,11 @@ System.out.println(">>>>>>>>>>>>>>>"+itemId);
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		 MenuInflater inflater = getMenuInflater();
-		 inflater.inflate(R.menu.main, menu);
-		 
-		 
-		 
-		// Associate searchable configuration with the SearchView
-		SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();//Returns the currently set action view for this menu item.
-		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-		//getComponentName-->Returns complete component name of this activity.
-		searchView.setSubmitButtonEnabled(true);
-		searchView.setIconifiedByDefault(true);
-		
-		
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
 		return true;
+
 	}
-	
 
 	private SimpleCursorAdapter adapter = null;
 	private NotesDB db;
@@ -409,8 +383,7 @@ System.out.println(">>>>>>>>>>>>>>>"+itemId);
 	public static final int REQUEST_CODE_ADD_NOTE = 1;
 	public static final int REQUEST_CODE_EDIT_NOTE = 2;
 
-
-	
+	private MediaAdapter mediaAdapter = null;
 
 }
 
