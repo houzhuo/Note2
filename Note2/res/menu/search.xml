@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/action_search"
+    <item android:id="@+id/aty_search_action_search"
         android:icon="@drawable/actionbar_search_icon"
         android:title="action_search"
         android:actionViewClass="android.widget.SearchView"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom|collapseActionView"
+        android:iconifiedByDefault="false"
        /> 
     
 

@@ -323,6 +323,7 @@ int id always 0x7f08000b
 int id aty_login_btnlogin 0x7f08004d
 int id aty_login_tab1 0x7f080047
 int id aty_login_tab2 0x7f080049
+int id aty_search_action_search 0x7f080079
 int id beginning 0x7f080011
 int id btn_signin 0x7f08004b
 int id checkbox 0x7f080031

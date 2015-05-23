@@ -57,7 +57,6 @@ public class MainActivity extends ListActivity {
 	private SwipeMenuListView mListView;
 	private int itemId;
 
-	private SearchManager searchManager;
 
 	private OnItemClickListener btnMenuList_clickHandler = new OnItemClickListener() {
 

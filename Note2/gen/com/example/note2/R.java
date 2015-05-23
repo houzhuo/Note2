@@ -1191,6 +1191,7 @@ containing a value of this type.
         public static final int aty_login_btnlogin=0x7f08004d;
         public static final int aty_login_tab1=0x7f080047;
         public static final int aty_login_tab2=0x7f080049;
+        public static final int aty_search_action_search=0x7f080079;
         public static final int beginning=0x7f080011;
         public static final int btn_signin=0x7f08004b;
         public static final int checkbox=0x7f080031;

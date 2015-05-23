@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class AtySearch extends ListActivity {
 	private MediaAdapter mediaAdapter = null;
 	private SQLiteDatabase dbRead;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class AtySearch extends ListActivity {
 		db = new NotesDB(this);
 		dbRead = db.getReadableDatabase();
 		handleIntent(getIntent());
+		
 	}
 
 	@Override
@@ -87,16 +91,19 @@ public class AtySearch extends ListActivity {
 		// TODO Auto-generated method stub
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.search, menu);
+		MenuItem search = menu.findItem(R.id.aty_search_action_search);
+		search.collapseActionView();//Ä¬ÈÏÕ¹¿ªËÑË÷¿ò
+		search.expandActionView();
 
 		// Associate searchable configuration with the SearchView
 		SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
+		SearchView searchView = (SearchView) menu.findItem(R.id.aty_search_action_search)
 				.getActionView();// Returns the currently set action view for
 									// this menu item.
 		searchView.setSearchableInfo(searchManager
 				.getSearchableInfo(getComponentName()));
 		// getComponentName-->Returns complete component name of this activity.
-		searchView.setSubmitButtonEnabled(true);
+		searchView.setSubmitButtonEnabled(false);
 		searchView.setIconifiedByDefault(true);
 
 		return true;
