@@ -105,6 +105,7 @@ public class AtySearch extends ListActivity {
 		// getComponentName-->Returns complete component name of this activity.
 		searchView.setSubmitButtonEnabled(false);
 		searchView.setIconifiedByDefault(true);
+	
 
 		return true;
 
