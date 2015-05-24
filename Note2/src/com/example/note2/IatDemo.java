@@ -66,7 +66,7 @@ public class IatDemo extends Activity implements OnClickListener{
 		
 		
 
-		// 初始化识别对象
+		//创建SpeechRecognizer对象，第二个参数： 本地听写时传InitListener
 		mIat = SpeechRecognizer.createRecognizer(this, mInitListener);
 		// 初始化听写Dialog,如果只使用有UI听写功能,无需创建SpeechRecognizer
 		iatDialog = new RecognizerDialog(this,mInitListener);
@@ -98,7 +98,8 @@ public class IatDemo extends Activity implements OnClickListener{
 			boolean isShowDialog = mSharedPreferences.getBoolean("iat_show", true);
 			if (isShowDialog) {
 				// 显示听写对话框
-				iatDialog.setListener(recognizerDialogListener);
+				
+				iatDialog.setListener(recognizerDialogListener);//设置回调接口
 				iatDialog.show();
 				showTip("请开始说话");
 			} else {
@@ -159,6 +160,22 @@ public class IatDemo extends Activity implements OnClickListener{
 	 * 听写监听器。
 	 */
 	private RecognizerListener recognizerListener=new RecognizerListener(){
+		//听写结果回调接口(返回Json格式结果)；
+		//一般情况下会通过onResults接口多次返回结果，完整的识别内容是多次结果的累加；
+		//关于解析Json的代码可参见MscDemo中JsonParser类；
+		//isLast等于true时会话结束。
+
+		@Override
+		public void onResult(RecognizerResult results, boolean isLast) {		
+			Log.d(TAG, results.getResultString());
+			String text = JsonParser.parseIatResult(results.getResultString());
+			mResultText.append(text);
+			mResultText.setSelection(mResultText.length());
+			//showTip(text);
+			if(isLast) {
+				//TODO 最后的结果
+			}
+		}
 
 		@Override
 		public void onBeginOfSpeech() {	
@@ -178,17 +195,6 @@ public class IatDemo extends Activity implements OnClickListener{
 
 
 
-		@Override
-		public void onResult(RecognizerResult results, boolean isLast) {		
-			Log.d(TAG, results.getResultString());
-			String text = JsonParser.parseIatResult(results.getResultString());
-			mResultText.append(text);
-			mResultText.setSelection(mResultText.length());
-			//showTip(text);
-			if(isLast) {
-				//TODO 最后的结果
-			}
-		}
 
 		@Override
 		public void onVolumeChanged(int volume) {

@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.R.anim;
-import android.R.integer;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.ContentValues;
@@ -16,32 +14,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Video.Thumbnails;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.example.note2.arcmenu.ArcMenu;
 import com.example.note2.arcmenu.ArcMenu.OnMenuItemClickListener;
-import com.example.note2.arcmenu.ArcMenu.Position;
 import com.example.note2.db.NotesDB;
 
 public class AtyEditNote extends ListActivity {
@@ -474,6 +468,7 @@ public class AtyEditNote extends ListActivity {
 			finish();
 
 			return true;
+	
 
 		default:
 			break;
