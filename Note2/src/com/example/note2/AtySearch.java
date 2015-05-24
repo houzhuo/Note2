@@ -51,7 +51,7 @@ public class AtySearch extends ListActivity {
 	// 引擎类型
 	private String mEngineType = SpeechConstant.TYPE_CLOUD;
 
-	private String text;
+	private String text = "1";
 
 	// 用HashMap存储听写结果
 	// private HashMap<String, String> mIatResults = new LinkedHashMap<String,
@@ -93,38 +93,46 @@ public class AtySearch extends ListActivity {
 	}
 
 	private void doMySearch(String query) {
-
+		int nameId = -1;
 		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
 				NotesDB.COLUMN_NAME_NOTE_NAME + " like?", new String[] { "%"
 						+ query + "%" }, null, null, null);
 
-		c.moveToFirst();
-
-		System.out.println("++++++++++++" + c.getCount());
-
-		Toast.makeText(getApplicationContext(),
-				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_ID)),
-				Toast.LENGTH_LONG).show();
-
-		if (mediaAdapter != null) {
-			for (int i = 0; i < c.getCount(); i++) {
-				mediaAdapter.add(new MediaListCellData(c.getString(c
-						.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME))
-						+ ".mp3", c.getInt(c
-						.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
-				c.moveToNext();
-			}
-		}
 		/*
+		 * c.moveToFirst();
+		 * 
+		 * System.out.println("++++++++++++" + c.getCount());
+		 * 
+		 * Toast.makeText(getApplicationContext(),
+		 * c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_ID)),
+		 * Toast.LENGTH_LONG).show();
+		 * 
+		 * if (mediaAdapter != null) { for (int i = 0; i < c.getCount(); i++) {
 		 * mediaAdapter.add(new MediaListCellData(c.getString(c
-		 * .getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)), c
-		 * .getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
+		 * .getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)) + ".mp3", c.getInt(c
+		 * .getColumnIndex(NotesDB.COLUMN_NAME_ID)))); c.moveToNext(); }
+		 * 
+		 * }8
 		 */
-		// }
 
-		setListAdapter(mediaAdapter);
-		mediaAdapter.notifyDataSetChanged();
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		while (c.moveToNext()) {
+			mediaAdapter.add(new MediaListCellData(c.getString(c
+					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)) + ".mp3", c
+					.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
+			nameId = c.getInt(c
+					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME));
+			System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEE"+ nameId);
+		}
+		if (nameId != -1) {
+			
+			mediaAdapter.notifyDataSetChanged();
+			setListAdapter(mediaAdapter);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+ nameId);
+		} else {
+			showTip("0个搜索结果");
+			setListAdapter(null);
+		}
+
 	}
 
 	@Override
@@ -199,9 +207,9 @@ public class AtySearch extends ListActivity {
 		@Override
 		public void onResult(RecognizerResult results, boolean isLast) {
 			Log.d(TAG, results.getResultString());
-			String text = JsonParser.parseIatResult(results.getResultString());
-			System.out.println("RecognizerListener------" + text);
-			//doMySearch(text);
+			String text2 = JsonParser.parseIatResult(results.getResultString());
+			System.out.println("RecognizerListener------" + text2);
+			// doMySearch(text);
 
 			if (isLast) {
 				// TODO 最后的结果
@@ -237,9 +245,9 @@ public class AtySearch extends ListActivity {
 	 */
 	private RecognizerDialogListener recognizerDialogListener = new RecognizerDialogListener() {
 		public void onResult(RecognizerResult results, boolean isLast) {
-			String text2 = JsonParser.parseIatResult(results.getResultString());
-			System.out.println("UI-------"+text2);
-			doMySearch(text2);
+			text = JsonParser.parseIatResult(results.getResultString());
+			System.out.println("UI-------" + text);
+			doMySearch(text);
 		}
 
 		/**
@@ -254,17 +262,13 @@ public class AtySearch extends ListActivity {
 	/**
 	 * 初始化监听器。
 	 */
-/*
-	private InitListener mInitListener = new InitListener() {
-
-		@Override
-		public void onInit(int code) {
-			Log.d(TAG, "SpeechRecognizer init() code = " + code);
-			if (code != ErrorCode.SUCCESS) {
-				showTip("初始化失败,错误码：" + code);
-			}
-		}
-	};*/
+	/*
+	 * private InitListener mInitListener = new InitListener() {
+	 * 
+	 * @Override public void onInit(int code) { Log.d(TAG,
+	 * "SpeechRecognizer init() code = " + code); if (code != ErrorCode.SUCCESS)
+	 * { showTip("初始化失败,错误码：" + code); } } };
+	 */
 
 	public void setParam() {
 		// 清空参数

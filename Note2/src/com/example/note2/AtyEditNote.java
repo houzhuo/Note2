@@ -358,6 +358,8 @@ public class AtyEditNote extends ListActivity {
 		public void add(MediaListCellData data) {
 			list.add(data);
 		}
+		
+		
 
 		@Override
 		public int getCount() {
