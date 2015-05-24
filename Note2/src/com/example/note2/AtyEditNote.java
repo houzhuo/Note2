@@ -262,9 +262,12 @@ public class AtyEditNote extends ListActivity {
 				/*
 				 * »ñÈ¡wavµÄPath
 				 */
-				String wavPath = data.getExtras().getString("wavPath");
+				String wavPath = data.getExtras().getString(IatDemo.VOICE_EXTRA_PATH);
+				voiceContent = data.getExtras().getString(IatDemo.VOICE_EXTRA_CONTENT);
+				//Toast.makeText(AtyEditNote.this, voiceContent, Toast.LENGTH_LONG);
+				System.out.println(voiceContent);
 				System.out.println("____________________________" + wavPath);
-				adapter.add(new MediaListCellData(wavPath));
+				adapter.add(new MediaListCellData(voiceContent));
 				adapter.notifyDataSetChanged();
 			}
 			break;
@@ -341,6 +344,8 @@ public class AtyEditNote extends ListActivity {
 	private Uri audioPath;
 	private String recordPath;
 	private String wavPath;
+	
+	private String voiceContent;
 
 	public static final int REQUEST_CODE_GET_PHOTO = 1;
 	public static final int REQUEST_CODE_GET_VIDEO = 2;
@@ -422,10 +427,14 @@ public class AtyEditNote extends ListActivity {
 			if (path.endsWith(".mp4")) {
 				iconId = R.drawable.icon_video;
 				type = MediaType.VIDEO;
-			} else if (path.endsWith(".wav")) {
+			} 
+			else {
 				iconId = R.drawable.icon_sound;
 				type = MediaType.SOUND;
-			}
+			}/*else if (path.endsWith(".wav")) {
+				iconId = R.drawable.icon_sound;
+				type = MediaType.SOUND;
+			}*/
 		}
 
 		public MediaListCellData(String path, int id) {
