@@ -119,7 +119,6 @@ public class AtySearch extends ListActivity {
 
 	}
 	private void doVoiceMySearch(String query) {
-		int nameId = -1;
 		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
 				NotesDB.COLUMN_NAME_NOTE_NAME + " like?", new String[] { "%"
 						+ query + "%" }, null, null, null);
@@ -130,15 +129,10 @@ public class AtySearch extends ListActivity {
 					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)) + ".mp3", c
 					.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
 			
-			nameId = c.getInt(c
-					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME));
-			System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv"+ nameId);
-			
-		}
+		}			
 			mediaAdapter.notifyDataSetChanged();
 			setListAdapter(mediaAdapter);
 		
-			
 	}
 
 	@Override
@@ -156,13 +150,13 @@ public class AtySearch extends ListActivity {
 				iatDialog.show();
 				showTip("请开始说话");
 			} else {
-				// 不显示听写对话框
+				/*// 不显示听写对话框
 				ret = mIat.startListening(recognizerListener);
 				if (ret != ErrorCode.SUCCESS) {
 					showTip("听写失败,错误码：" + ret);
 				} else {
 					showTip("请开始说话");
-				}
+				}*/showTip("no dialog");
 
 			}
 			break;
@@ -201,9 +195,9 @@ public class AtySearch extends ListActivity {
 
 	}
 
-	/**
+/*	*//**
 	 * 听写监听器。
-	 */
+	 *//*
 	private RecognizerListener recognizerListener = new RecognizerListener() {
 		// 听写结果回调接口(返回Json格式结果)；
 		// 一般情况下会通过onResults接口多次返回结果，完整的识别内容是多次结果的累加；
@@ -245,7 +239,7 @@ public class AtySearch extends ListActivity {
 		@Override
 		public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
 		}
-	};
+	};*/
 	/**
 	 * 听写UI监听器
 	 */
