@@ -69,9 +69,12 @@ public class AtyEditNote extends ListActivity {
 					NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID + "=?",
 					new String[] { noteId + "" }, null, null, null);
 			while (c.moveToNext()) {
-				adapter.add(new MediaListCellData(c.getString(c
-						.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_PATH)), c
-						.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
+				adapter.add(new MediaListCellData(
+						c.getString(c
+								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
+								c.getString(c
+										.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_PATH)),
+						c.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
 			}
 			adapter.notifyDataSetChanged();
 		}
@@ -231,7 +234,7 @@ public class AtyEditNote extends ListActivity {
 		case REQUEST_CODE_GET_VIDEO:
 
 			if (resultCode == RESULT_OK) {
-				adapter.add(new MediaListCellData(currentPath));
+				adapter.add(new MediaListCellData(null,currentPath));
 				adapter.notifyDataSetChanged();
 				Uri audioPath = data.getData();
 				Toast.makeText(this, audioPath.toString(), Toast.LENGTH_LONG)
@@ -253,13 +256,17 @@ public class AtyEditNote extends ListActivity {
 				/*
 				 * 获取wav的Path
 				 */
-				String wavPath = data.getExtras().getString(IatDemo.VOICE_EXTRA_PATH);
-				voiceContent = data.getExtras().getString(IatDemo.VOICE_EXTRA_CONTENT);
-				//Toast.makeText(AtyEditNote.this, voiceContent, Toast.LENGTH_LONG);
+				String wavPath = data.getExtras().getString(
+						IatDemo.VOICE_EXTRA_PATH);
+				voiceContent = data.getExtras().getString(
+						IatDemo.VOICE_EXTRA_CONTENT);
+				// Toast.makeText(AtyEditNote.this, voiceContent,
+				// Toast.LENGTH_LONG);
 				System.out.println(voiceContent);
-				etContent.append("/"+stringFormat(voiceContent));
+				etContent.append("/" + stringFormat(voiceContent));
 				System.out.println("____________________________" + wavPath);
-				adapter.add(new MediaListCellData(voiceContent));
+				
+				adapter.add(new MediaListCellData(voiceContent, wavPath));
 				adapter.notifyDataSetChanged();
 			}
 			break;
@@ -280,6 +287,10 @@ public class AtyEditNote extends ListActivity {
 	}
 
 	public void saveMedia(int noteId) {
+		
+		DateFormat date = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.SHORT); // 显示日期，时间（精确到分）
+		String Date = date.format(new Date());
 
 		MediaListCellData data;
 		ContentValues cv;
@@ -288,10 +299,24 @@ public class AtyEditNote extends ListActivity {
 			data = adapter.getItem(i);
 
 			if (data.id <= -1) {
+				if (data.content != null) {
 				cv = new ContentValues();
 				cv.put(NotesDB.COLUMN_NAME_MEDIA_PATH, data.path);
 				cv.put(NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID, noteId);
+				cv.put(NotesDB.COLUMN_NAME_MEDIA_CONTENT, data.content);
+				System.out.println("++++" + data.content);
+				//System.out.println(data.content.toString());
 				dbWrite.insert(NotesDB.TABLE_NAME_MEDIA, null, cv);
+				}else {
+					cv = new ContentValues();
+					cv.put(NotesDB.COLUMN_NAME_MEDIA_PATH, data.path);
+					cv.put(NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID, noteId);
+					cv.put(NotesDB.COLUMN_NAME_MEDIA_CONTENT,Date );
+					System.out.println("++++" + data.content);
+					//System.out.println(data.content.toString());
+					dbWrite.insert(NotesDB.TABLE_NAME_MEDIA, null, cv);
+				}
+				
 			}
 		}
 
@@ -336,7 +361,7 @@ public class AtyEditNote extends ListActivity {
 	private Uri audioPath;
 	private String recordPath;
 	private String wavPath;
-	
+
 	private String voiceContent;
 
 	public static final int REQUEST_CODE_GET_PHOTO = 1;
@@ -356,8 +381,6 @@ public class AtyEditNote extends ListActivity {
 		public void add(MediaListCellData data) {
 			list.add(data);
 		}
-		
-		
 
 		@Override
 		public int getCount() {
@@ -387,11 +410,14 @@ public class AtyEditNote extends ListActivity {
 			ImageView ivIcon = (ImageView) convertView
 					.findViewById(R.id.ivIcon);
 			TextView tvPath = (TextView) convertView.findViewById(R.id.tvPath);
+			TextView tvSoundContent = (TextView) convertView
+					.findViewById(R.id.tvSoundContent);
 
 			ivIcon.setImageResource(data.iconId);
 			// ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
 			// MediaStore.Images.Thumbnails.MICRO_KIND));
 			tvPath.setText(data.path);
+			tvSoundContent.setText(data.content);
 			return convertView;
 		}
 
@@ -411,8 +437,9 @@ public class AtyEditNote extends ListActivity {
 
 	static class MediaListCellData {
 
-		public MediaListCellData(String path) {
+		public MediaListCellData(String content,String path) {
 			this.path = path;
+			this.content = content;
 
 			if (path.endsWith(".jpg")) {
 				iconId = R.drawable.icon_photo;
@@ -421,25 +448,26 @@ public class AtyEditNote extends ListActivity {
 			if (path.endsWith(".mp4")) {
 				iconId = R.drawable.icon_video;
 				type = MediaType.VIDEO;
-			} 
-			else {
+			} else {
 				iconId = R.drawable.icon_sound;
 				type = MediaType.SOUND;
-			}/*else if (path.endsWith(".wav")) {
-				iconId = R.drawable.icon_sound;
-				type = MediaType.SOUND;
-			}*/
+			}/*
+			 * else if (path.endsWith(".wav")) { iconId = R.drawable.icon_sound;
+			 * type = MediaType.SOUND; }
+			 */
 		}
 
-		public MediaListCellData(String path, int id) {
-			this(path);
+		public MediaListCellData(String content,String path,  int id) {
 
+			this.path = path;
+			this.content = content;
 			this.id = id;
 		}
 
 		int type = 0;
 		int id = -1;
 		String path = "";
+		String content = "";
 		int iconId = R.drawable.ic_launcher;
 	}
 
@@ -468,16 +496,19 @@ public class AtyEditNote extends ListActivity {
 			finish();
 
 			return true;
-	
 
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	public static String stringFormat(String s){ 
-		  String str=s.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]", ""); 
-		  return str; 
-		 }
+
+	public static String stringFormat(String s) {
+		String str = s
+				.replaceAll(
+						"[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]",
+						"");
+		return str;
+	}
 
 }

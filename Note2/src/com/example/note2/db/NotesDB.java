@@ -22,6 +22,7 @@ public class NotesDB extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE "+TABLE_NAME_MEDIA+"(" +
 				COLUMN_NAME_ID+" INTEGER PRIMARY KEY AUTOINCREMENT," +
 				COLUMN_NAME_MEDIA_PATH+" TEXT NOT NULL DEFAULT \"\"," +
+				COLUMN_NAME_MEDIA_CONTENT+" TEXT NOT NULL DEFAULT \"\","+
 				COLUMN_NAME_MEDIA_OWNER_NOTE_ID+" INTEGER NOT NULL DEFAULT 0" +
 				")");
 
@@ -41,6 +42,7 @@ public class NotesDB extends SQLiteOpenHelper {
 	public static final String COLUMN_NAME_NOTE_CONTENT = "content";
 	public static final String COLUMN_NAME_NOTE_DATE = "date";
 	public static final String COLUMN_NAME_MEDIA_PATH = "path";
+	public static final String COLUMN_NAME_MEDIA_CONTENT = "mediacontent";
 	public static final String COLUMN_NAME_MEDIA_OWNER_NOTE_ID = "note_id";
 
 
