@@ -333,10 +333,7 @@ public class AtySearch extends ListActivity {
 				null, null, null, null));
 
 	}
-	public static String format(String s){ 
-		  String str=s.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~£¡@#£¤%¡­¡­& amp;*£¨£©¡ª¡ª+|{}¡¾¡¿¡®£»£º¡±¡°¡¯¡££¬¡¢£¿|-]", ""); 
-		  return str; 
-		 }
+	
 	
 	public static final int REQUEST_CODE_EDIT_NOTE = 2;
 }

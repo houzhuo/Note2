@@ -212,14 +212,11 @@ public class AtyEditNote extends ListActivity {
 			i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
 			startActivity(i);
 			break;
-		case MediaType.SOUND:
 
+		default:
 			i = new Intent(this, AtySoundViewer.class);
 			i.putExtra(AtySoundViewer.EXTRA_PATH, data.path);
 			startActivity(i);
-
-			break;
-		default:
 			break;
 		}
 
@@ -260,7 +257,7 @@ public class AtyEditNote extends ListActivity {
 				voiceContent = data.getExtras().getString(IatDemo.VOICE_EXTRA_CONTENT);
 				//Toast.makeText(AtyEditNote.this, voiceContent, Toast.LENGTH_LONG);
 				System.out.println(voiceContent);
-				etContent.append("/"+voiceContent);
+				etContent.append("/"+stringFormat(voiceContent));
 				System.out.println("____________________________" + wavPath);
 				adapter.add(new MediaListCellData(voiceContent));
 				adapter.notifyDataSetChanged();
@@ -478,5 +475,9 @@ public class AtyEditNote extends ListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	public static String stringFormat(String s){ 
+		  String str=s.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~£¡@#£¤%¡­¡­& amp;*£¨£©¡ª¡ª+|{}¡¾¡¿¡®£»£º¡±¡°¡¯¡££¬¡¢£¿|-]", ""); 
+		  return str; 
+		 }
 
 }

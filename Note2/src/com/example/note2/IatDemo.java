@@ -329,7 +329,7 @@ public class IatDemo extends Activity implements OnClickListener{
                    Intent intent = new Intent();
                    
                    intent.putExtra(VOICE_EXTRA_PATH, wavPath.toString());
-                   intent.putExtra(VOICE_EXTRA_CONTENT,stringFormat(mResultText.getText().toString()) );   
+                   intent.putExtra(VOICE_EXTRA_CONTENT,mResultText.getText().toString() );   
                    setResult(3, intent);
                    finish();
          
@@ -344,11 +344,14 @@ public class IatDemo extends Activity implements OnClickListener{
                 } 
             }).show(); 
            }  
-	
+	/**
+	 * @param 正则表达式去标点
+	 * @return
+	 *//*
 	public static String stringFormat(String s){ 
 		  String str=s.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]", ""); 
 		  return str; 
-		 }
+		 }*/
 	
 	public static final String VOICE_EXTRA_PATH= "wavPath";
 	public static final String VOICE_EXTRA_CONTENT= "content";
