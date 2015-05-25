@@ -260,6 +260,7 @@ public class AtyEditNote extends ListActivity {
 				voiceContent = data.getExtras().getString(IatDemo.VOICE_EXTRA_CONTENT);
 				//Toast.makeText(AtyEditNote.this, voiceContent, Toast.LENGTH_LONG);
 				System.out.println(voiceContent);
+				etContent.append("/"+voiceContent);
 				System.out.println("____________________________" + wavPath);
 				adapter.add(new MediaListCellData(voiceContent));
 				adapter.notifyDataSetChanged();

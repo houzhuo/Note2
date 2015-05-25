@@ -98,22 +98,6 @@ public class AtySearch extends ListActivity {
 				NotesDB.COLUMN_NAME_NOTE_NAME + " like?", new String[] { "%"
 						+ query + "%" }, null, null, null);
 
-		/*
-		 * c.moveToFirst();
-		 * 
-		 * System.out.println("++++++++++++" + c.getCount());
-		 * 
-		 * Toast.makeText(getApplicationContext(),
-		 * c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_ID)),
-		 * Toast.LENGTH_LONG).show();
-		 * 
-		 * if (mediaAdapter != null) { for (int i = 0; i < c.getCount(); i++) {
-		 * mediaAdapter.add(new MediaListCellData(c.getString(c
-		 * .getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)) + ".mp3", c.getInt(c
-		 * .getColumnIndex(NotesDB.COLUMN_NAME_ID)))); c.moveToNext(); }
-		 * 
-		 * }8
-		 */
 
 		while (c.moveToNext()) {
 			mediaAdapter.add(new MediaListCellData(c.getString(c
@@ -133,6 +117,28 @@ public class AtySearch extends ListActivity {
 			setListAdapter(null);
 		}
 
+	}
+	private void doVoiceMySearch(String query) {
+		int nameId = -1;
+		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
+				NotesDB.COLUMN_NAME_NOTE_NAME + " like?", new String[] { "%"
+						+ query + "%" }, null, null, null);
+
+
+		while (c.moveToNext()) {
+			mediaAdapter.add(new MediaListCellData(c.getString(c
+					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)) + ".mp3", c
+					.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
+			
+			nameId = c.getInt(c
+					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME));
+			System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv"+ nameId);
+			
+		}
+			mediaAdapter.notifyDataSetChanged();
+			setListAdapter(mediaAdapter);
+		
+			
 	}
 
 	@Override
@@ -247,7 +253,7 @@ public class AtySearch extends ListActivity {
 		public void onResult(RecognizerResult results, boolean isLast) {
 			text = JsonParser.parseIatResult(results.getResultString());
 			System.out.println("UI-------" + text);
-			doMySearch(text);
+			doVoiceMySearch(text);
 		}
 
 		/**
