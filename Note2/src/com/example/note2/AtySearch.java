@@ -12,7 +12,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.example.note2.AtyEditNote.MediaAdapter;
@@ -33,7 +38,8 @@ import com.iflytek.cloud.ui.RecognizerDialogListener;
 public class AtySearch extends ListActivity {
 
 	private NotesDB db;
-	private MediaAdapter mediaAdapter = null;
+	//private MediaAdapter mediaAdapter = null;
+	private SimpleCursorAdapter simpleCursorAdapter = null;
 	private SQLiteDatabase dbRead;
 
 	private static String TAG = "IatDemo";
@@ -61,7 +67,7 @@ public class AtySearch extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.aty_search);
-		mediaAdapter = new MediaAdapter(this);
+		//mediaAdapter = new MediaAdapter(this);
 		db = new NotesDB(this);
 		dbRead = db.getReadableDatabase();
 		handleIntent(getIntent());
@@ -92,7 +98,7 @@ public class AtySearch extends ListActivity {
 		}
 	}
 
-	private void doMySearch(String query) {
+	/*private void doMySearch(String query) {
 		int nameId = -1;
 		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
 				NotesDB.COLUMN_NAME_NOTE_NAME + " like?", new String[] { "%"
@@ -117,21 +123,52 @@ public class AtySearch extends ListActivity {
 			setListAdapter(null);
 		}
 
-	}
-	private void doVoiceMySearch(String query) {
+	}*/
+	private void doMySearch(String query) {
+		int nameId = -1;
 		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
-				NotesDB.COLUMN_NAME_NOTE_NAME + " like?", new String[] { "%"
+				NotesDB.COLUMN_NAME_NOTE_CONTENT + " like?", new String[] { "%"
 						+ query + "%" }, null, null, null);
-
+		
 
 		while (c.moveToNext()) {
-			mediaAdapter.add(new MediaListCellData(c.getString(c
-					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)) + ".mp3", c
-					.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
+			simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.notes_list_cell, c,
+					new String[] { NotesDB.COLUMN_NAME_NOTE_NAME,
+					NotesDB.COLUMN_NAME_NOTE_DATE,
+					NotesDB.COLUMN_NAME_NOTE_CONTENT }, new int[] {
+					R.id.tvName, R.id.tvDate, R.id.tvContent });
+			nameId = c.getInt(c
+					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME));
+		}
+		if (nameId != -1) {
 			
-		}			
-			mediaAdapter.notifyDataSetChanged();
-			setListAdapter(mediaAdapter);
+			simpleCursorAdapter.notifyDataSetChanged();
+			setListAdapter(simpleCursorAdapter);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+ nameId);
+		} else {
+			showTip("0个搜索结果");
+			setListAdapter(null);
+		}
+	
+
+	}
+	private void doVoiceMySearch(String query) {
+	
+		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
+				NotesDB.COLUMN_NAME_NOTE_CONTENT + " like?", new String[] { "%"
+						+ query + "%" }, null, null, null);
+		
+
+		while (c.moveToNext()) {
+			simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.notes_list_cell, c,
+					new String[] { NotesDB.COLUMN_NAME_NOTE_NAME,
+					NotesDB.COLUMN_NAME_NOTE_DATE,
+					NotesDB.COLUMN_NAME_NOTE_CONTENT }, new int[] {
+					R.id.tvName, R.id.tvDate, R.id.tvContent });
+			
+			setListAdapter(simpleCursorAdapter);
+			System.out.println("setListAdapter");//出错是因为科大返回了两次结果，第二次是句号。
+		}
 		
 	}
 
@@ -195,51 +232,6 @@ public class AtySearch extends ListActivity {
 
 	}
 
-/*	*//**
-	 * 听写监听器。
-	 *//*
-	private RecognizerListener recognizerListener = new RecognizerListener() {
-		// 听写结果回调接口(返回Json格式结果)；
-		// 一般情况下会通过onResults接口多次返回结果，完整的识别内容是多次结果的累加；
-		// 关于解析Json的代码可参见MscDemo中JsonParser类；
-		// isLast等于true时会话结束。
-
-		@Override
-		public void onResult(RecognizerResult results, boolean isLast) {
-			Log.d(TAG, results.getResultString());
-			String text2 = JsonParser.parseIatResult(results.getResultString());
-			System.out.println("RecognizerListener------" + text2);
-			// doMySearch(text);
-
-			if (isLast) {
-				// TODO 最后的结果
-			}
-		}
-
-		@Override
-		public void onBeginOfSpeech() {
-			showTip("开始说话");
-		}
-
-		@Override
-		public void onError(SpeechError error) {
-			showTip(error.getPlainDescription(true));
-		}
-
-		@Override
-		public void onEndOfSpeech() {
-			showTip("结束说话");
-		}
-
-		@Override
-		public void onVolumeChanged(int volume) {
-			showTip("当前正在说话，音量大小：" + volume);
-		}
-
-		@Override
-		public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
-		}
-	};*/
 	/**
 	 * 听写UI监听器
 	 */
@@ -297,7 +289,7 @@ public class AtySearch extends ListActivity {
 		mIat.setParameter(SpeechConstant.VAD_EOS,
 				mSharedPreferences.getString("iat_vadeos_preference", "1000"));
 		// 设置标点符号
-		// mIat.setParameter(SpeechConstant.ASR_PTT,
+		mIat.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("iat_punc_preference", "1"));
 		// mSharedPreferences.getString("iat_punc_preference", "1"));
 		// 设置音频保存路径
 	}
@@ -306,4 +298,45 @@ public class AtySearch extends ListActivity {
 		mToast.setText(str);
 		mToast.show();
 	}
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Cursor c = simpleCursorAdapter.getCursor();
+		c.moveToPosition(position);
+		
+		Intent i = new Intent(AtySearch.this, AtyEditNote.class);
+		i.putExtra(AtyEditNote.EXTRA_NOTE_ID,
+				c.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID)));
+		i.putExtra(AtyEditNote.EXTRA_NOTE_NAME,
+				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)));
+		i.putExtra(AtyEditNote.EXTRA_NOTE_CONTENT,
+				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_CONTENT)));
+		startActivityForResult(i, REQUEST_CODE_EDIT_NOTE);
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (resultCode) {
+		case REQUEST_CODE_EDIT_NOTE:
+			refreshNotesListView();
+			break;
+
+		default:
+			break;
+		}
+	}
+	public void refreshNotesListView() {
+
+		simpleCursorAdapter.changeCursor(dbRead.query(NotesDB.TABLE_NAME_NOTES, null, null,
+				null, null, null, null));
+
+	}
+	public static String format(String s){ 
+		  String str=s.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]", ""); 
+		  return str; 
+		 }
+	
+	public static final int REQUEST_CODE_EDIT_NOTE = 2;
 }

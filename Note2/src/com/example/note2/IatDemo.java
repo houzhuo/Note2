@@ -327,8 +327,9 @@ public class IatDemo extends Activity implements OnClickListener{
                    pcm2wav();
                    //把地址推送到ActivityForResult
                    Intent intent = new Intent();
+                   
                    intent.putExtra(VOICE_EXTRA_PATH, wavPath.toString());
-                   intent.putExtra(VOICE_EXTRA_CONTENT,mResultText.getText().toString() );   
+                   intent.putExtra(VOICE_EXTRA_CONTENT,stringFormat(mResultText.getText().toString()) );   
                    setResult(3, intent);
                    finish();
          
@@ -343,6 +344,11 @@ public class IatDemo extends Activity implements OnClickListener{
                 } 
             }).show(); 
            }  
+	
+	public static String stringFormat(String s){ 
+		  String str=s.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]", ""); 
+		  return str; 
+		 }
 	
 	public static final String VOICE_EXTRA_PATH= "wavPath";
 	public static final String VOICE_EXTRA_CONTENT= "content";
