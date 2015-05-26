@@ -213,40 +213,24 @@ public class AtyEditNote extends ListActivity {
 		System.out.println(data.type);
 		System.out.println(data.path);
 
-		/*
-		 * int type = 0; if (data.path.endsWith(".jpg")) { type =
-		 * MediaType.PHOTO; } if (data.path.endsWith(".mp4")) { type =
-		 * MediaType.VIDEO; } else if (data.path.endsWith(".wav")) { type =
-		 * MediaType.SOUND; }
-		 */
-
-		/*
-		 * switch (data.type) { case MediaType.PHOTO: i = new Intent(this,
-		 * AtyPhotoViewer.class); i.putExtra(AtyPhotoViewer.EXTRA_PATH,
-		 * data.path); System.out.println("onListItemClick.path:" + data.path);
-		 * startActivity(i); break; case MediaType.VIDEO: i = new Intent(this,
-		 * AtyVideoViewer.class); i.putExtra(AtyVideoViewer.EXTRA_PATH,
-		 * data.path); startActivity(i); break;
-		 * 
-		 * case MediaType.SOUND: i = new Intent(this, AtySoundViewer.class);
-		 * i.putExtra(AtySoundViewer.EXTRA_PATH, data.path); startActivity(i);
-		 * break; }
-		 */
-
-		if (data.path.endsWith(".jpg")) {
+		switch (data.type) {
+		case MediaType.PHOTO:
 			i = new Intent(this, AtyPhotoViewer.class);
 			i.putExtra(AtyPhotoViewer.EXTRA_PATH, data.path);
 			System.out.println("onListItemClick.path:" + data.path);
 			startActivity(i);
-		} else if (data.path.endsWith(".mp4")) {
+			break;
+		case MediaType.VIDEO:
 			i = new Intent(this, AtyVideoViewer.class);
 			i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
 			startActivity(i);
-		} else if (data.path.endsWith(".wav")) {
+			break;
 
+		case MediaType.SOUND:
 			i = new Intent(this, AtySoundViewer.class);
 			i.putExtra(AtySoundViewer.EXTRA_PATH, data.path);
 			startActivity(i);
+			break;
 		}
 
 		super.onListItemClick(l, v, position, id);
@@ -497,8 +481,7 @@ public class AtyEditNote extends ListActivity {
 
 		public MediaListCellData(String content, String path, int id) {
 
-			this.path = path;
-			this.content = content;
+			this(content, path);
 			this.id = id;
 		}
 

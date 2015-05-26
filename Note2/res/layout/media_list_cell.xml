@@ -20,7 +20,7 @@
             android:id="@+id/tvSoundContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall" /> 
 
         <TextView
             android:id="@+id/tvPath"
@@ -29,4 +29,4 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
-</LinearLayout>
+ </LinearLayout> 
