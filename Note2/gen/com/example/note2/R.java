@@ -1285,8 +1285,8 @@ containing a value of this type.
         public static final int tvContent=0x7f080071;
         public static final int tvDate=0x7f080070;
         public static final int tvName=0x7f08006f;
-        public static final int tvPath=0x7f08006d;
-        public static final int tvSoundContent=0x7f08006e;
+        public static final int tvPath=0x7f08006e;
+        public static final int tvSoundContent=0x7f08006d;
         public static final int up=0x7f080025;
         public static final int useLogo=0x7f080003;
         public static final int withText=0x7f08000c;

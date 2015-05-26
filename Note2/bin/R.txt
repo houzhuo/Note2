@@ -417,8 +417,8 @@ int id top_relative 0x7f08004f
 int id tvContent 0x7f080071
 int id tvDate 0x7f080070
 int id tvName 0x7f08006f
-int id tvPath 0x7f08006d
-int id tvSoundContent 0x7f08006e
+int id tvPath 0x7f08006e
+int id tvSoundContent 0x7f08006d
 int id up 0x7f080025
 int id useLogo 0x7f080003
 int id withText 0x7f08000c

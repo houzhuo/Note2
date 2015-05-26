@@ -355,6 +355,7 @@ public class MainActivity extends ListActivity {
 
 		adapter.changeCursor(dbRead.query(NotesDB.TABLE_NAME_NOTES, null, null,
 				null, null, null, null));
+		
 		//dbRead.query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
 
 	}
