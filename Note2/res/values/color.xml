@@ -2,6 +2,7 @@
 <resources>
 
     <drawable name="actionbar_background">#336699</drawable>
+  
     <drawable name="activated_background_color">#00a7ff</drawable>
     <drawable name="dkgray">#80808FF0</drawable>
     <drawable name="yello">#F8F8FF00</drawable>

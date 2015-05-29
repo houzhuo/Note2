@@ -57,7 +57,6 @@ public class MainActivity extends ListActivity {
 	private SwipeMenuListView mListView;
 	private int itemId;
 
-
 	private OnItemClickListener btnMenuList_clickHandler = new OnItemClickListener() {
 
 		@Override
@@ -76,6 +75,15 @@ public class MainActivity extends ListActivity {
 				Intent loginIntent = new Intent(MainActivity.this,
 						AtyLogin.class);
 				startActivity(loginIntent);
+				break;
+			case 2:
+				Intent feedbackIntent = new Intent(MainActivity.this,
+						AtyFeedback.class);
+				startActivity(feedbackIntent);
+				break;
+			case 0:
+				Intent usrIntent = new Intent(MainActivity.this, AtyUser.class);
+				startActivity(usrIntent);
 				break;
 
 			default:
@@ -241,10 +249,7 @@ public class MainActivity extends ListActivity {
 		 * searchView.setSubmitButtonEnabled(false);
 		 */
 
-
 	}
-
-
 
 	/*
 	 * 根据侧边栏是否打开变换右上角的功能图标??
@@ -271,7 +276,7 @@ public class MainActivity extends ListActivity {
 					AtyEditNote.class), REQUEST_CODE_ADD_NOTE);
 			break;
 		case R.id.action_search:
-			Intent intent = new Intent(MainActivity.this,AtySearch.class);
+			Intent intent = new Intent(MainActivity.this, AtySearch.class);
 			startActivity(intent);
 
 		default:
@@ -355,8 +360,9 @@ public class MainActivity extends ListActivity {
 
 		adapter.changeCursor(dbRead.query(NotesDB.TABLE_NAME_NOTES, null, null,
 				null, null, null, null));
-		
-		//dbRead.query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
+
+		// dbRead.query(table, columns, selection, selectionArgs, groupBy,
+		// having, orderBy)
 
 	}
 

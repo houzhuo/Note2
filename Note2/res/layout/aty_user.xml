@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+
+
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="-50dp"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/scrollview_header" />
+
+    <RelativeLayout
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/scroll_view_head"
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:layout_marginTop="100dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/actionbar_favor_icon" >
+
+                    <!--
+                         <TextView
+                        android:id="@+id/attention_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/actionbar_background"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="21dp"
+                        android:layout_marginTop="6dp"
+                        android:drawableLeft="@drawable/actionbar_add"
+                        android:drawablePadding="3dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:gravity="center_vertical"
+                        android:text="houzhou?"
+                        android:textSize="13sp"
+                        android:textColor="#57AF4E" />
+                    -->
+
+                    <TextView
+                        android:id="@+id/user_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/user_post"
+                        android:layout_centerVertical="true"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="houzhuo.net"
+                        android:textColor="#A1A1A1"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/user_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/user_book"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="100dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="智能备忘录"
+                        android:textColor="#A1A1A1"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/user_des"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="用户描述:我们没有看过的世界，大到我们无法想象。"
+                        android:textColor="#B1B1B1"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/user_avatar"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_marginLeft="21dp"
+                    android:background="@android:color/white"
+                    android:contentDescription="@null"
+                    android:padding="1px"
+                    android:src="@drawable/ic_usr_default" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_toRightOf="@id/user_avatar"
+                    android:ellipsize="end"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="3.0"
+                    android:shadowDy="3.0"
+                    android:shadowRadius="5.0"
+                    android:singleLine="true"
+                    android:text="Cins侯卓"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                 <FrameLayout
+                    android:id="@+id/user_divider_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_avatar"
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginRight="21dp"
+                    android:layout_marginTop="16dp" >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="5dp"
+                        android:background="#DFDFDF"
+                        android:contentDescription="@null" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="29dp"
+                        android:contentDescription="@null"
+                        android:src="@android:color/black" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+              
+                android:background="#F7F4F0"
+                android:orientation="vertical"
+                android:paddingBottom="8dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="13dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="用户推荐tip"
+                    android:textColor="#A1A1A1"
+                    android:textSize="12sp" />
+
+                <TableLayout
+                    android:id="@+id/table_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#106184" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

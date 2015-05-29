@@ -70,12 +70,7 @@ public class AtyEditNote extends ListActivity {
 					new String[] { noteId + "" }, null, null, null);
 
 			while (c.moveToNext()) {
-				// System.out.println("onCreatePath:"+
-				// c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_PATH)));
-				System.out
-						.println("onCreateContent:"
-								+ c.getString(c
-										.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)));
+	
 				adapter.add(new MediaListCellData(
 						c.getString(c
 								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
@@ -248,7 +243,7 @@ public class AtyEditNote extends ListActivity {
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData(Date, currentPath));
+				adapter.add(new MediaListCellData(Date,currentPath));
 				adapter.notifyDataSetChanged();
 				Uri audioPath = data.getData();
 				Toast.makeText(this, audioPath.toString(), Toast.LENGTH_LONG)

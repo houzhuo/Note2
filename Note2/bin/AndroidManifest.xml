@@ -58,6 +58,8 @@
         </activity>
         <activity android:name="AtySignin" >
         </activity>
+        <activity android:name="AtyFeedback"></activity>
+        <activity android:name="AtyUser"></activity>
     </application>
 
 </manifest>
