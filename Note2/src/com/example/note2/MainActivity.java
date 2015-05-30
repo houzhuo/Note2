@@ -112,59 +112,15 @@ public class MainActivity extends ListActivity {
 		refreshNotesListView();
 		
 		createSwipeMenu();
+		
+		swipeDelete();
+		
+		iconSet();
 
-		/*
-		 * 滑动侧边栏
-		 */
+	}
 
-		title = (String) getTitle();
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawList = (ListView) findViewById(R.id.left_drawer);
-
-		String[] mTitle = getResources().getStringArray(R.array.item_title);
-		int[] itemIconRes = { R.drawable.ic_drawer_home,
-				R.drawable.ic_drawer_collect,
-				R.drawable.ic_drawer_cloud,
-				R.drawable.ic_drawer_count,
-				R.drawable.ic_drawer_setting
-
-		};
-		for (int i = 0; i < itemIconRes.length; i++) {
-			DrawerListItem item = new DrawerListItem(getResources()
-					.getDrawable(itemIconRes[i]), mTitle[i]);
-			ListItem.add(item);
-
-		}
-
-		DrawerListAdapter drawerListAdapter = new DrawerListAdapter(this,
-				ListItem);
-		mDrawList.setAdapter(drawerListAdapter);
-
-		mDrawList.setOnItemClickListener(btnMenuList_clickHandler);
-		/*
-		 * 监听侧边栏是否打开，并设置标题,图标
-		 */
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.drawer_open,
-				R.string.drawer_close) {
-			@Override
-			public void onDrawerOpened(View drawerView) {
-				// TODO Auto-generated method stub
-				getActionBar().setTitle("滴滴备忘");
-				invalidateOptionsMenu(); // call onPrepareOptionMenu(),并重写方法
-
-				super.onDrawerOpened(drawerView);
-			}
-
-			@Override
-			public void onDrawerClosed(View drawerView) {
-				// TODO Auto-generated method stub
-				getActionBar().setTitle("首页");
-				invalidateOptionsMenu();
-				super.onDrawerClosed(drawerView);
-
-			}
-		};
+	private void iconSet() {
+		// TODO Auto-generated method stub
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		// 开启ActionBar上的APP ICON的功能
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -172,6 +128,10 @@ public class MainActivity extends ListActivity {
 		getActionBar().setDisplayShowHomeEnabled(false);// 设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用，
 		// 如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
 
+	}
+
+	private void swipeDelete() {
+		// TODO Auto-generated method stub
 		/*
 		 * 滑动删除
 		 */
@@ -234,17 +194,63 @@ public class MainActivity extends ListActivity {
 			}
 		});
 
-		// setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
-
-		/*
-		 * searchView.setOnQueryTextListener((OnQueryTextListener) this);
-		 * searchView.setSubmitButtonEnabled(false);
-		 */
-
+		
 	}
 
 	private void createSwipeMenu() {
 		// TODO Auto-generated method stub
+		/*
+		 * 滑动侧边栏
+		 */
+
+		title = (String) getTitle();
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawList = (ListView) findViewById(R.id.left_drawer);
+
+		String[] mTitle = getResources().getStringArray(R.array.item_title);
+		int[] itemIconRes = { R.drawable.ic_drawer_home,
+				R.drawable.ic_drawer_collect,
+				R.drawable.ic_drawer_cloud,
+				R.drawable.ic_drawer_count,
+				R.drawable.ic_drawer_setting
+
+		};
+		for (int i = 0; i < itemIconRes.length; i++) {
+			DrawerListItem item = new DrawerListItem(getResources()
+					.getDrawable(itemIconRes[i]), mTitle[i]);
+			ListItem.add(item);
+
+		}
+
+		DrawerListAdapter drawerListAdapter = new DrawerListAdapter(this,
+				ListItem);
+		mDrawList.setAdapter(drawerListAdapter);
+
+		mDrawList.setOnItemClickListener(btnMenuList_clickHandler);
+		/*
+		 * 监听侧边栏是否打开，并设置标题,图标
+		 */
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				// TODO Auto-generated method stub
+				getActionBar().setTitle("滴滴备忘");
+				invalidateOptionsMenu(); // call onPrepareOptionMenu(),并重写方法
+
+				super.onDrawerOpened(drawerView);
+			}
+
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				// TODO Auto-generated method stub
+				getActionBar().setTitle("首页");
+				invalidateOptionsMenu();
+				super.onDrawerClosed(drawerView);
+
+			}
+		};
 		
 	}
 
@@ -281,6 +287,10 @@ public class MainActivity extends ListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	
+	
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -334,6 +344,9 @@ public class MainActivity extends ListActivity {
 
 		super.onListItemClick(l, v, position, id);
 	}
+	
+	
+	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -362,14 +375,19 @@ public class MainActivity extends ListActivity {
 		// having, orderBy)
 
 	}
+	
+	
 
 	private int dp2px(int dp) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
 				getResources().getDisplayMetrics());
 	}
+	
+
 
 	/*
 	 * inflate the XML menu resource
+	 * 初始化导航栏
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -379,6 +397,8 @@ public class MainActivity extends ListActivity {
 		return true;
 
 	}
+	
+	
 	/*
 	 * 按两次程序退出
 	 */
@@ -397,6 +417,8 @@ public class MainActivity extends ListActivity {
 		    }
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	
 
 	private SimpleCursorAdapter adapter = null;
 	private NotesDB db;

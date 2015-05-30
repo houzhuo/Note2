@@ -245,9 +245,9 @@ public class AtyEditNote extends ListActivity {
 
 				adapter.add(new MediaListCellData(Date,currentPath));
 				adapter.notifyDataSetChanged();
-				Uri audioPath = data.getData();
+				/*Uri audioPath = data.getData();
 				Toast.makeText(this, audioPath.toString(), Toast.LENGTH_LONG)
-						.show();
+						.show();*/
 			}
 			break;
 		case REQUEST_CODE_GET_SOUND:
