@@ -1,8 +1,6 @@
 package com.example.note2.arcmenu;
 
 
-import java.security.PublicKey;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;

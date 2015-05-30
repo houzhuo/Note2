@@ -1216,6 +1216,8 @@ containing a value of this type.
         public static final int end=0x7f080013;
         public static final int etContent=0x7f080044;
         public static final int etName=0x7f080043;
+        public static final int etSignin_name=0x7f080061;
+        public static final int etSignin_pwd=0x7f080062;
         public static final int expand_activities_button=0x7f08002a;
         public static final int expanded_menu=0x7f080030;
         public static final int feedback_contact_edit=0x7f080049;
@@ -1282,8 +1284,6 @@ containing a value of this type.
         public static final int showCustom=0x7f080007;
         public static final int showHome=0x7f080004;
         public static final int showTitle=0x7f080006;
-        public static final int signin_etname=0x7f080061;
-        public static final int signin_etpwd=0x7f080062;
         public static final int split_action_bar=0x7f080022;
         public static final int submit_area=0x7f08003d;
         public static final int tabMode=0x7f080002;

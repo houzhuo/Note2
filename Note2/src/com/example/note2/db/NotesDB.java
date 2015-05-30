@@ -3,7 +3,6 @@ package com.example.note2.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.Contacts.Intents.Insert;
 
 public class NotesDB extends SQLiteOpenHelper {
 

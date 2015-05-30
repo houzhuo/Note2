@@ -8,7 +8,6 @@ import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AtyLogin extends Activity {
 	private TextView textSignin;

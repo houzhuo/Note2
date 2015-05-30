@@ -2,8 +2,6 @@ package com.example.note2;
 
 import android.graphics.drawable.Drawable;
 
-import com.example.note2.R.drawable;
-
 public class DrawerListItem {
 	private Drawable icon;
 	private String title;

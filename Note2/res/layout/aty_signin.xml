@@ -58,7 +58,7 @@
                 android:paddingTop="16.0dip" >
 
                 <EditText
-                    android:id="@+id/signin_etname"
+                    android:id="@+id/etSignin_name"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:background="@null"
@@ -84,7 +84,7 @@
                 android:paddingTop="16.0dip" >
 
                 <EditText
-                    android:id="@+id/signin_etpwd"
+                    android:id="@+id/etSignin_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:background="@null"

@@ -2,9 +2,6 @@ package com.example.note2;
 
 import java.util.List;
 
-import com.example.note2.DrawerListItem;
-import com.example.note2.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
