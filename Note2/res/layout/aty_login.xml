@@ -4,7 +4,22 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@drawable/actionbar_background" >
+	<RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/actionbar_background" >
 
+        <ImageView
+            android:id="@+id/ic_Login_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left"
+            android:gravity="center_vertical"
+            android:paddingLeft="6.0dip"
+            android:src="@drawable/ic_settings_back" />
+
+    </RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -33,7 +48,7 @@
                 android:paddingTop="16.0dip" >
 
                 <EditText
-                    android:id="@+id/login_etname"
+                    android:id="@+id/etLogin_name"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:background="@null"
@@ -59,7 +74,7 @@
                 android:paddingTop="16.0dip" >
 
                 <EditText
-                    android:id="@+id/login_etpwd"
+                    android:id="@+id/etLogin_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:background="@null"
@@ -99,7 +114,7 @@
         android:textSize="38dp" />
 
     <Button
-        android:id="@+id/aty_login_btnlogin"
+        android:id="@+id/btnlogin"
         android:layout_width="316dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout1"
