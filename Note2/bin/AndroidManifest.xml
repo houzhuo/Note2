@@ -34,13 +34,20 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop" 
-            android:label="@string/main_page" >
+            android:label="iNotes"
+            android:launchMode="singleTop" >
+        </activity>
+        <activity
+            android:name="AtyWelcome"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+ 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+ 
         </activity>
         <activity android:name="AtyEditNote" >
         </activity>
@@ -58,8 +65,10 @@
         </activity>
         <activity android:name="AtySignin" >
         </activity>
-        <activity android:name="AtyFeedback"></activity>
-        <activity android:name="AtyUser"></activity>
+        <activity android:name="AtyFeedback" >
+        </activity>
+        <activity android:name="AtyUser" >
+        </activity>
     </application>
 
 </manifest>
