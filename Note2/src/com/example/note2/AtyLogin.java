@@ -9,6 +9,8 @@ import XMLReader.LoginData;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,7 +31,13 @@ public class AtyLogin extends Activity implements Runnable {
 	private EditText etLoginPwd;
 	private Handler handler;
 	private boolean isRun = false;
-	
+
+	private Editor editor;
+	private SharedPreferences sp;
+	public static final String LOG_NAME = "logName";
+	public static final String LOG_PWD = "logPwd";
+	public static final String LOG_INFO = "logInfo";
+
 	private OnClickListener btn_signin_onclickHandler = new OnClickListener() {
 
 		@Override
@@ -38,20 +46,20 @@ public class AtyLogin extends Activity implements Runnable {
 			startActivity(new Intent(getApplicationContext(), AtySignin.class));
 		}
 	};
-	
+
 	private OnClickListener btn_login_onclickHandler = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			String name = etLoginName.getText().toString();
-			String pwd =  etLoginPwd.getText().toString();
+			String pwd = etLoginPwd.getText().toString();
 			System.out.println(name);
 			if (name.isEmpty() && pwd.isEmpty()) {
-				Toast.makeText(getApplicationContext(), "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "用户名或密码不能为空",
+						Toast.LENGTH_SHORT).show();
 			}
-				
-			
+
 			isRun = true;
 			Thread t = new Thread(AtyLogin.this); // 创建新线程
 			t.start(); // 开启线程
@@ -59,17 +67,27 @@ public class AtyLogin extends Activity implements Runnable {
 			handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
 				public void handleMessage(Message msg) { // 回调
 					if (msg.what == 1) {
-						if (msg.getData().getString("result").equals("Success!")){				
-							System.out.println("equals"+msg.getData().getString("result"));
-							Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
-						
-						}else {
-							System.out.println(msg.getData().getString("result")+"error");
-							Toast.makeText(getApplicationContext(), "密码或用户名错误", Toast.LENGTH_SHORT).show();
-							
-							
+						if (msg.getData().getString("result")
+								.equals("Success!")) {
+							System.out.println("equals"+ msg.getData().getString("result"));
+							Toast.makeText(getApplicationContext(), "登录成功",Toast.LENGTH_SHORT).show();
+							sp = getSharedPreferences(LOG_INFO,Activity.MODE_PRIVATE);
+							editor = sp.edit();
+							editor.putString(LOG_NAME, etLoginName.getText().toString());
+							editor.putString(LOG_PWD, etLoginPwd.getText().toString());
+
+							if (editor.commit()) {
+								startActivity(new Intent(getApplicationContext(),AtyUser.class));
+							}
+
+						} else {
+							System.out.println(msg.getData()
+									.getString("result") + "error");
+							Toast.makeText(getApplicationContext(), "密码或用户名错误",
+									Toast.LENGTH_SHORT).show();
+
 						}
-						
+
 					}
 					super.handleMessage(msg);
 				}
@@ -77,16 +95,15 @@ public class AtyLogin extends Activity implements Runnable {
 			};
 		}
 	};
-	
+
 	private OnClickListener btn_image_handler = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			finish();
 		}
 	};
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,21 +139,21 @@ public class AtyLogin extends Activity implements Runnable {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("name", etLoginName.getText().toString());
 			map.put("password", etLoginPwd.getText().toString());
-			
+
 			LoginConnecter loginconn = new LoginConnecter(map);
-    		try {
+			try {
 				loginconn.getXML();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    		loginconn.readXML();
-    		LoginData data = loginconn.getData();
-			 
+			loginconn.readXML();
+			LoginData data = loginconn.getData();
+
 			Message m = handler.obtainMessage(); // 获取一个Message
 			Bundle bundle = new Bundle(); // 获取Bundle对象
 			m.what = 1; // 设置消息标识
-			
+
 			bundle.putString("result", data.getResult());
 			// bundle.putString("ID", data.getId()); //保存数据
 
@@ -148,8 +165,5 @@ public class AtyLogin extends Activity implements Runnable {
 
 		}
 	}
-	
 
-	
 }
-
