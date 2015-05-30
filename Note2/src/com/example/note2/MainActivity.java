@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -109,6 +110,8 @@ public class MainActivity extends ListActivity {
 		registerForContextMenu(mListView);
 
 		refreshNotesListView();
+		
+		createSwipeMenu();
 
 		/*
 		 * 滑动侧边栏
@@ -119,11 +122,11 @@ public class MainActivity extends ListActivity {
 		mDrawList = (ListView) findViewById(R.id.left_drawer);
 
 		String[] mTitle = getResources().getStringArray(R.array.item_title);
-		int[] itemIconRes = { R.drawable.ic_drawer_home_normal,
-				R.drawable.ic_drawer_collect_normal,
-				R.drawable.ic_drawer_feedback_normal,
-				R.drawable.ic_drawer_count_normal,
-				R.drawable.ic_drawer_setting_normal
+		int[] itemIconRes = { R.drawable.ic_drawer_home,
+				R.drawable.ic_drawer_collect,
+				R.drawable.ic_drawer_cloud,
+				R.drawable.ic_drawer_count,
+				R.drawable.ic_drawer_setting
 
 		};
 		for (int i = 0; i < itemIconRes.length; i++) {
@@ -238,6 +241,11 @@ public class MainActivity extends ListActivity {
 		 * searchView.setSubmitButtonEnabled(false);
 		 */
 
+	}
+
+	private void createSwipeMenu() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*
@@ -371,6 +379,24 @@ public class MainActivity extends ListActivity {
 		return true;
 
 	}
+	/*
+	 * 按两次程序退出
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		 if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){   
+		        if((System.currentTimeMillis()-exitTime) > 2000){  
+		            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+		            exitTime = System.currentTimeMillis();   
+		        } else {
+		            finish();
+		            System.exit(0);
+		        }
+		        return true;   
+		    }
+		return super.onKeyDown(keyCode, event);
+	}
 
 	private SimpleCursorAdapter adapter = null;
 	private NotesDB db;
@@ -380,6 +406,8 @@ public class MainActivity extends ListActivity {
 	public static final int REQUEST_CODE_EDIT_NOTE = 2;
 
 	private MediaAdapter mediaAdapter = null;
+	
+	private long exitTime = 0;
 
 }
 

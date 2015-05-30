@@ -77,7 +77,7 @@ public class AtyLogin extends Activity implements Runnable {
 							editor.putString(LOG_PWD, etLoginPwd.getText().toString());
 
 							if (editor.commit()) {
-								startActivity(new Intent(getApplicationContext(),AtyUser.class));
+								startActivity(new Intent(getApplicationContext(),MainActivity.class));
 							}
 
 						} else {

@@ -41,10 +41,12 @@ public class AtyWelcome extends Activity implements Runnable {
 		if (name.equals("null")) {
 			startActivity(new Intent(getApplicationContext(), AtySignin.class));
 			System.out.println("NOT equals:"+name);
+			finish();
 			
 		}else {
 			startActivity(new Intent(getApplicationContext(), MainActivity.class));
 			System.out.println("equals:"+name);
+			finish();
 		}
 		
 	}
