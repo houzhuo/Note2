@@ -1108,7 +1108,7 @@ containing a value of this type.
         public static final int action_search=0x7f020058;
         public static final int actionbar_add=0x7f020059;
         public static final int actionbar_back_icon=0x7f02005a;
-        public static final int actionbar_background=0x7f020082;
+        public static final int actionbar_background=0x7f020089;
         public static final int actionbar_cancel_icon=0x7f02005b;
         public static final int actionbar_delete_icon=0x7f02005c;
         public static final int actionbar_favor_icon=0x7f02005d;
@@ -1116,7 +1116,7 @@ containing a value of this type.
         public static final int actionbar_search_icon=0x7f02005f;
         public static final int actionbar_voice_search=0x7f020060;
         public static final int activated_background=0x7f020061;
-        public static final int activated_background_color=0x7f020084;
+        public static final int activated_background_color=0x7f02008b;
         public static final int composer_button=0x7f020062;
         public static final int composer_camera=0x7f020063;
         public static final int composer_icn_plus=0x7f020064;
@@ -1128,7 +1128,7 @@ containing a value of this type.
         public static final int composer_video=0x7f02006a;
         public static final int composer_with=0x7f02006b;
         public static final int corner_bg=0x7f02006c;
-        public static final int feedback_background=0x7f020083;
+        public static final int feedback_background=0x7f02008a;
         public static final int ic_drawer=0x7f02006d;
         public static final int ic_drawer_cloud=0x7f02006e;
         public static final int ic_drawer_collect=0x7f02006f;
@@ -1140,16 +1140,23 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020075;
         public static final int ic_login_background=0x7f020076;
         public static final int ic_search=0x7f020077;
-        public static final int ic_settings_back=0x7f020078;
-        public static final int ic_settings_privacy=0x7f020079;
-        public static final int ic_settings_right=0x7f02007a;
-        public static final int ic_star_light=0x7f02007b;
-        public static final int ic_usr_default=0x7f02007c;
-        public static final int icon_photo=0x7f02007d;
-        public static final int icon_sound=0x7f02007e;
-        public static final int icon_video=0x7f02007f;
-        public static final int image_welcome=0x7f020080;
-        public static final int scrollview_header=0x7f020081;
+        public static final int ic_settings_about=0x7f020078;
+        public static final int ic_settings_back=0x7f020079;
+        public static final int ic_settings_history=0x7f02007a;
+        public static final int ic_settings_logout=0x7f02007b;
+        public static final int ic_settings_message=0x7f02007c;
+        public static final int ic_settings_net=0x7f02007d;
+        public static final int ic_settings_privacy=0x7f02007e;
+        public static final int ic_settings_right=0x7f02007f;
+        public static final int ic_settings_setting=0x7f020080;
+        public static final int ic_settings_update=0x7f020081;
+        public static final int ic_star_light=0x7f020082;
+        public static final int ic_usr_default=0x7f020083;
+        public static final int icon_photo=0x7f020084;
+        public static final int icon_sound=0x7f020085;
+        public static final int icon_video=0x7f020086;
+        public static final int image_welcome=0x7f020087;
+        public static final int scrollview_header=0x7f020088;
     }
     public static final class id {
         public static final int Button01=0x7f080066;

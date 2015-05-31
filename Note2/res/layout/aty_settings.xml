@@ -10,7 +10,7 @@
         android:id="@+id/top_relative"
         android:layout_width="fill_parent"
         android:layout_height="50.0dip"
-        android:background="#106184" >
+        android:background="@drawable/actionbar_background" >
 
         <ImageView
             android:id="@+id/ic_settings_back"
@@ -72,7 +72,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_privacy"
+                            android:drawableLeft="@drawable/ic_settings_setting"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -127,7 +127,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_right"
+                            android:drawableLeft="@drawable/ic_settings_privacy"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -157,7 +157,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_right"
+                            android:drawableLeft="@drawable/ic_settings_message"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -187,7 +187,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_privacy"
+                            android:drawableLeft="@drawable/ic_settings_history"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -242,7 +242,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_privacy"
+                            android:drawableLeft="@drawable/ic_settings_net"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -272,7 +272,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_privacy"
+                            android:drawableLeft="@drawable/ic_settings_update"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -302,7 +302,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_privacy"
+                            android:drawableLeft="@drawable/ic_settings_about"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
@@ -332,12 +332,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:drawableLeft="@drawable/ic_settings_privacy"
+                            android:drawableLeft="@drawable/ic_settings_logout"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="17.0dip"
-                            android:text="退出"
+                            android:text="注销登录"
                             android:textColor="#ff333333"
                             android:textSize="16.0sp" />
 
