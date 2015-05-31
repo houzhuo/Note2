@@ -48,7 +48,13 @@ public class AtyEditNote extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.aty_eidt_note);
-
+	
+		/*
+		 * 去actionbar
+		 */
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
 		db = new NotesDB(this);
 		dbRead = db.getReadableDatabase();
 		dbWrite = db.getWritableDatabase();
@@ -70,8 +76,10 @@ public class AtyEditNote extends ListActivity {
 					new String[] { noteId + "" }, null, null, null);
 
 			while (c.moveToNext()) {
-	
+
 				adapter.add(new MediaListCellData(
+						c.getString(c
+								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
 						c.getString(c
 								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
 						c.getString(c
@@ -82,7 +90,9 @@ public class AtyEditNote extends ListActivity {
 		}
 		initView();
 		initEvent();
-
+		
+	
+/*
 		// actionbar导航
 		ActionBar actionBar = getActionBar();
 		actionBar.setTitle("                    滴滴备忘");
@@ -91,7 +101,7 @@ public class AtyEditNote extends ListActivity {
 		actionBar.setDisplayShowHomeEnabled(false);// 没有系统图标
 		actionBar.setHomeButtonEnabled(true);// 设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用，
 		// 如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
-
+*/
 		mListView = getListView();
 		registerForContextMenu(mListView);
 
@@ -243,24 +253,21 @@ public class AtyEditNote extends ListActivity {
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData(Date,currentPath));
+				adapter.add(new MediaListCellData("Video", Date, currentPath));
 				adapter.notifyDataSetChanged();
-				/*Uri audioPath = data.getData();
-				Toast.makeText(this, audioPath.toString(), Toast.LENGTH_LONG)
-						.show();*/
+				/*
+				 * Uri audioPath = data.getData(); Toast.makeText(this,
+				 * audioPath.toString(), Toast.LENGTH_LONG) .show();
+				 */
 			}
 			break;
 		case REQUEST_CODE_GET_SOUND:
 
 			if (resultCode == RESULT_OK || resultCode == 3) {
-				/*
-				 * audioPath = data.getData(); //获取到Uri Toast.makeText(this,
-				 * audioPath.toString(), Toast.LENGTH_LONG).show(); recordPath =
-				 * audioPath.toString();//转换 System.out.println(recordPath);
-				 * 
-				 * adapter.add(new MediaListCellData(recordPath));
-				 * adapter.notifyDataSetChanged();
-				 */
+
+				DateFormat date = DateFormat.getDateTimeInstance(
+						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
+				String Date = date.format(new Date());
 
 				/*
 				 * 获取wav的Path
@@ -275,7 +282,7 @@ public class AtyEditNote extends ListActivity {
 				etContent.append("/" + stringFormat(voiceContent));
 				System.out.println("____________________________" + wavPath);
 
-				adapter.add(new MediaListCellData(voiceContent, wavPath));
+				adapter.add(new MediaListCellData(voiceContent, Date, wavPath));
 				adapter.notifyDataSetChanged();
 			}
 			break;
@@ -420,12 +427,15 @@ public class AtyEditNote extends ListActivity {
 			TextView tvPath = (TextView) convertView.findViewById(R.id.tvPath);
 			TextView tvSoundContent = (TextView) convertView
 					.findViewById(R.id.tvSoundContent);
+			TextView tvMediaDate = (TextView) convertView
+					.findViewById(R.id.tvMediaDate);
 
 			ivIcon.setImageResource(data.iconId);
 			// System.out.println("icon:"+data.iconId);
 			// ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
 			// MediaStore.Images.Thumbnails.MICRO_KIND));
 			tvPath.setText(data.path);
+			tvMediaDate.setText(data.date);
 			tvSoundContent.setText(data.content);
 			return convertView;
 		}
@@ -450,10 +460,12 @@ public class AtyEditNote extends ListActivity {
 		int id = -1;
 		String path = "";
 		String content = "";
+		String date = "";
 		int iconId = R.drawable.ic_launcher;
 
-		public MediaListCellData(String content, String path) {
+		public MediaListCellData(String content, String date, String path) {
 			this.content = content;
+			this.date = date;
 			this.path = path;
 
 			if (path.endsWith(".jpg")) {
@@ -474,9 +486,10 @@ public class AtyEditNote extends ListActivity {
 			 */
 		}
 
-		public MediaListCellData(String content, String path, int id) {
+		public MediaListCellData(String content, String date, String path,
+				int id) {
 
-			this(content, path);
+			this(content, date, path);
 			this.id = id;
 		}
 

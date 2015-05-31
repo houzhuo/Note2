@@ -26,7 +26,7 @@ import com.example.note2.R;
 	private static final int POS_RIGHT_TOP = 2;
 	private static final int POS_RIGHT_BOTTOM = 3;
 
-	private Position mPosition = Position.LEFT_BOTTOM;
+	private Position mPosition = Position.RIGHT_BOTTOM;
 	private int mRadius;
 	private Status mCurrentStatus = Status.CLOSE;
 	private View mCButton;// main button¡¢
@@ -87,7 +87,7 @@ import com.example.note2.R;
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
 				R.styleable.ArcMenu, defStyle, 0);
 
-		int pos = a.getInt(R.styleable.ArcMenu_position, POS_LEFT_BOTTOM);
+		int pos = a.getInt(R.styleable.ArcMenu_position, POS_RIGHT_BOTTOM);
 		switch (pos) {
 		case POS_LEFT_TOP:
 			mPosition = Position.LEFT_TOP;

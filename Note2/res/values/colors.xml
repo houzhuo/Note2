@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <drawable name="actionbar_background">#405e9c</drawable>
+    <drawable name="actionbar_background">#009788</drawable>
       <drawable name="feedback_background">#ffdbdada</drawable>
     <drawable name="activated_background_color">#00a7ff</drawable>
 </resources>
