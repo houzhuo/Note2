@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="5.0dip"
                 android:gravity="center_vertical"
                 android:paddingLeft="4.0dip"
@@ -43,10 +43,11 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:background="@null"
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="55dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="1dp"
                 android:ems="10"
@@ -60,7 +61,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"               
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="4.0dip"
@@ -73,12 +74,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="55dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="1dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:lines="1"
+                android:background="@null"
                 android:scrollbars="vertical"
                 android:text="Enjoy your life!"
                 android:textColor="@android:color/white"
@@ -94,10 +96,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10.0dip"
             android:gravity="center_vertical"
-            android:paddingLeft="30.0dip"
+            android:paddingLeft="50.0dip"
             android:text="Media"
             android:textColor="@drawable/actionbar_colorhint"
-            android:textSize="16.0sp" />
+            android:textSize="18.0sp" />
 
         <ListView
             android:id="@android:id/list"

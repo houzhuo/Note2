@@ -283,6 +283,7 @@ import com.example.note2.R;
 			RotateAnimation roataAnim = new RotateAnimation(0, 720,
 					Animation.RELATIVE_TO_SELF, 0.5f,
 					Animation.RELATIVE_TO_SELF, 0.5f);
+			//RotateAnimation roataAnim = new RotateAnimation(fromDegrees, toDegrees, pivotXType, pivotXValue, pivotYType, pivotYValue)
 
 			roataAnim.setDuration(duration);
 			roataAnim.setFillAfter(true);

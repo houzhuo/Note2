@@ -551,6 +551,15 @@ public class AtyEditNote extends ListActivity {
 		}*/
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		saveMedia(saveNote());
+		finish();
+		setResult(RESULT_OK);
+	}
 
 	public static String stringFormat(String s) {
 		String str = s

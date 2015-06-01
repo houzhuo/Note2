@@ -13,29 +13,44 @@
         android:background="@drawable/composer_button" >
 
         <ImageView
-            android:padding="20dp"
             android:id="@+id/sat_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:padding="20dp"
             android:src="@drawable/action_add" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/sat_camera"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/composer_camera"
-        android:tag="1" />
+        android:background="@drawable/composer_button_mini" >
 
-    <ImageView
-        android:id="@+id/sat_Record"
+        <ImageView
+            android:id="@+id/sat_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/composer_camera_xhdpi"
+            android:layout_centerInParent="true"
+            android:tag="1" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/composer_talk"
-        android:tag="2" />
+        android:background="@drawable/composer_button_mini" >
 
-  <!--   <ImageView
+        <ImageView
+            android:id="@+id/sat_Record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/composer_sound_xhdpi"
+            android:layout_centerInParent="true"
+            android:tag="2" />
+    </RelativeLayout>
+
+    <!--
+    <ImageView
         android:id="@+id/sat_Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,13 +62,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/composer_thought"
-        android:tag="4" /> -->
+        android:tag="4" />
+    -->
 
-    <ImageView
-        android:id="@+id/sat_Video"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/composer_video"
-        android:tag="5" />
+        android:background="@drawable/composer_button_mini" >
+
+        <ImageView
+            android:id="@+id/sat_Video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/composer_video_xhdpi"
+            android:layout_centerInParent="true"
+            android:tag="5" />
+    </RelativeLayout>
 
 </com.example.note2.arcmenu.ArcMenu>
