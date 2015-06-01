@@ -88,7 +88,7 @@ public class AtyEditNote extends ListActivity {
 						c.getString(c
 								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
 						c.getString(c
-								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
+								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_DATE)),
 						c.getString(c
 								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_PATH)),
 						c.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
@@ -353,6 +353,7 @@ public class AtyEditNote extends ListActivity {
 					System.out.println("saveMedia:data.path:" + data.path);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID, noteId);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_CONTENT, data.content);
+					cv.put(NotesDB.COLUMN_NAME_MEDIA_DATE, data.date);
 					System.out.println("++++" + data.content);
 					// System.out.println(data.content.toString());
 					dbWrite.insert(NotesDB.TABLE_NAME_MEDIA, null, cv);
@@ -360,6 +361,7 @@ public class AtyEditNote extends ListActivity {
 					cv = new ContentValues();
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_PATH, data.path);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID, noteId);
+					cv.put(NotesDB.COLUMN_NAME_MEDIA_DATE, data.date);
 					// cv.put(NotesDB.COLUMN_NAME_MEDIA_CONTENT,);
 					System.out.println("else dataContent" + data.content);
 					// System.out.println(data.content.toString());
