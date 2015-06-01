@@ -1,13 +1,9 @@
 package com.example.note2;
 
-import java.util.jar.Attributes.Name;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 

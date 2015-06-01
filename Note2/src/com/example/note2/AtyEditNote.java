@@ -267,6 +267,19 @@ public class AtyEditNote extends ListActivity {
 
 		switch (requestCode) {
 		case REQUEST_CODE_GET_PHOTO:
+			if (resultCode == RESULT_OK) {
+				DateFormat date = DateFormat.getDateTimeInstance(
+						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
+				String Date = date.format(new Date());
+
+				adapter.add(new MediaListCellData("Photos", Date, currentPath));
+				adapter.notifyDataSetChanged();
+				/*
+				 * Uri audioPath = data.getData(); Toast.makeText(this,
+				 * audioPath.toString(), Toast.LENGTH_LONG) .show();
+				 */
+			}
+			break;
 		case REQUEST_CODE_GET_VIDEO:
 
 			if (resultCode == RESULT_OK) {
@@ -274,7 +287,7 @@ public class AtyEditNote extends ListActivity {
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData("Video", Date, currentPath));
+				adapter.add(new MediaListCellData("Videos", Date, currentPath));
 				adapter.notifyDataSetChanged();
 				/*
 				 * Uri audioPath = data.getData(); Toast.makeText(this,
