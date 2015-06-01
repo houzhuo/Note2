@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
@@ -43,6 +44,8 @@ public class AtyEditNote extends ListActivity {
 	private ArcMenu arcMenu;
 
 	private ListView mListView;
+
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,10 @@ public class AtyEditNote extends ListActivity {
 
 		etName = (EditText) findViewById(R.id.etName);
 		etContent = (EditText) findViewById(R.id.etContent);
+		imageBack = (ImageView) findViewById(R.id.ic_atyedit_back);
+		imageBack.setOnClickListener(btn_back_onclickHandler);
+		
+		
 
 		noteId = getIntent().getIntExtra(EXTRA_NOTE_ID, -1);
 
@@ -106,6 +113,20 @@ public class AtyEditNote extends ListActivity {
 		registerForContextMenu(mListView);
 
 	}
+	
+	/*
+	 * ±£¥Ê“Ù∆µ
+	 */
+	private OnClickListener btn_back_onclickHandler = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			saveMedia(saveNote());
+			setResult(RESULT_OK);
+			finish();
+		}
+	};
 
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -367,6 +388,7 @@ public class AtyEditNote extends ListActivity {
 	}
 
 	private int noteId = -1;
+	private ImageView imageBack;
 	private EditText etName, etContent;
 	private MediaAdapter adapter;
 	private NotesDB db;
@@ -429,8 +451,11 @@ public class AtyEditNote extends ListActivity {
 					.findViewById(R.id.tvSoundContent);
 			TextView tvMediaDate = (TextView) convertView
 					.findViewById(R.id.tvMediaDate);
+			ImageView ivAbout = (ImageView) convertView.findViewById(R.id.ivAbout);
+			
 
 			ivIcon.setImageResource(data.iconId);
+			ivAbout.setImageResource(R.drawable.ic_settings_about);
 			// System.out.println("icon:"+data.iconId);
 			// ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
 			// MediaStore.Images.Thumbnails.MICRO_KIND));
@@ -513,7 +538,7 @@ public class AtyEditNote extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+		/*switch (item.getItemId()) {
 		case android.R.id.home:
 			saveMedia(saveNote());
 			setResult(RESULT_OK);
@@ -523,7 +548,7 @@ public class AtyEditNote extends ListActivity {
 
 		default:
 			break;
-		}
+		}*/
 		return super.onOptionsItemSelected(item);
 	}
 

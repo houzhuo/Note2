@@ -10,11 +10,11 @@
         android:showAsAction="always"
        /> 
     <item android:id="@+id/action_add"
-        android:icon="@drawable/actionbar_add"
+        android:icon="@drawable/actionbar_add_jia"
         android:title="action_add"
         android:showAsAction="always"/>
     
-	
+	<!-- 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -24,6 +24,6 @@
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="@string/action_logout"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/> -->
 
 </menu>
