@@ -1112,14 +1112,16 @@ containing a value of this type.
         public static final int actionbar_back_icon=0x7f02005c;
         public static final int actionbar_background=0x7f02009b;
         public static final int actionbar_cancel_icon=0x7f02005d;
-        public static final int actionbar_colorhint=0x7f02009d;
+        public static final int actionbar_colorhint=0x7f0200ad;
         public static final int actionbar_delete_icon=0x7f02005e;
         public static final int actionbar_favor_icon=0x7f02005f;
         public static final int actionbar_refresh_icon=0x7f020060;
         public static final int actionbar_search_icon=0x7f020061;
         public static final int actionbar_voice_search=0x7f020062;
         public static final int activated_background=0x7f020063;
-        public static final int activated_background_color=0x7f02009e;
+        public static final int activated_background_color=0x7f02009c;
+        public static final int black=0x7f0200a2;
+        public static final int blue=0x7f0200a3;
         public static final int composer_add=0x7f020064;
         public static final int composer_button=0x7f020065;
         public static final int composer_button_mini=0x7f020066;
@@ -1136,7 +1138,12 @@ containing a value of this type.
         public static final int composer_video_xhdpi=0x7f020071;
         public static final int composer_with=0x7f020072;
         public static final int corner_bg=0x7f020073;
-        public static final int feedback_background=0x7f02009c;
+        public static final int cyan=0x7f0200a4;
+        public static final int darkgray=0x7f0200a0;
+        public static final int dkgray=0x7f02009d;
+        public static final int feedback_background=0x7f0200ac;
+        public static final int gray=0x7f0200a5;
+        public static final int green=0x7f0200a6;
         public static final int ic_about=0x7f020074;
         public static final int ic_drawer=0x7f020075;
         public static final int ic_drawer_cloud=0x7f020076;
@@ -1175,7 +1182,15 @@ containing a value of this type.
         public static final int icon_sound=0x7f020097;
         public static final int icon_video=0x7f020098;
         public static final int image_welcome=0x7f020099;
+        public static final int lightgreen=0x7f0200a1;
+        public static final int ltgray=0x7f0200a7;
+        public static final int magenta=0x7f0200a8;
+        public static final int red=0x7f0200a9;
         public static final int scrollview_header=0x7f02009a;
+        public static final int transparent=0x7f0200aa;
+        public static final int white=0x7f02009f;
+        public static final int yello=0x7f02009e;
+        public static final int yellow=0x7f0200ab;
     }
     public static final class id {
         public static final int Button01=0x7f080067;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import android.R.integer;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.ContentValues;
@@ -45,19 +46,17 @@ public class AtyEditNote extends ListActivity {
 
 	private ListView mListView;
 
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.aty_eidt_note);
-	
+
 		/*
 		 * 去actionbar
 		 */
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
 		db = new NotesDB(this);
 		dbRead = db.getReadableDatabase();
 		dbWrite = db.getWritableDatabase();
@@ -69,8 +68,6 @@ public class AtyEditNote extends ListActivity {
 		etContent = (EditText) findViewById(R.id.etContent);
 		imageBack = (ImageView) findViewById(R.id.ic_atyedit_back);
 		imageBack.setOnClickListener(btn_back_onclickHandler);
-		
-		
 
 		noteId = getIntent().getIntExtra(EXTRA_NOTE_ID, -1);
 
@@ -97,28 +94,28 @@ public class AtyEditNote extends ListActivity {
 		}
 		initView();
 		initEvent();
-		
-	
-/*
-		// actionbar导航
-		ActionBar actionBar = getActionBar();
-		actionBar.setTitle("                    滴滴备忘");
-		actionBar.setHomeAsUpIndicator(R.drawable.actionbar_back_icon);
-		actionBar.setDisplayHomeAsUpEnabled(true);// 设置返回图标
-		actionBar.setDisplayShowHomeEnabled(false);// 没有系统图标
-		actionBar.setHomeButtonEnabled(true);// 设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用，
-		// 如果setHomeButtonEnabled设成false，即使setDisplayShowHomeEnabled设成true，图标也不能点击
-*/
+
+		/*
+		 * // actionbar导航 ActionBar actionBar = getActionBar();
+		 * actionBar.setTitle("                    滴滴备忘");
+		 * actionBar.setHomeAsUpIndicator(R.drawable.actionbar_back_icon);
+		 * actionBar.setDisplayHomeAsUpEnabled(true);// 设置返回图标
+		 * actionBar.setDisplayShowHomeEnabled(false);// 没有系统图标
+		 * actionBar.setHomeButtonEnabled(true);//
+		 * 设置左侧返回图标，其中setHomeButtonEnabled和setDisplayShowHomeEnabled共同起作用， //
+		 * 如果setHomeButtonEnabled设成false
+		 * ，即使setDisplayShowHomeEnabled设成true，图标也不能点击
+		 */
 		mListView = getListView();
 		registerForContextMenu(mListView);
 
 	}
-	
+
 	/*
 	 * 保存音频
 	 */
 	private OnClickListener btn_back_onclickHandler = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -152,12 +149,19 @@ public class AtyEditNote extends ListActivity {
 		case R.id.delete:
 			Toast.makeText(AtyEditNote.this, "delete", Toast.LENGTH_LONG)
 					.show();
+			int position = (int) getListAdapter().getItemId(info.position);
+			MediaListCellData data = adapter.getItem(position);
+			adapter.delete(position);
+			adapter.notifyDataSetChanged();
+			dbWrite.delete(NotesDB.TABLE_NAME_MEDIA, NotesDB.COLUMN_NAME_MEDIA_PATH + "=?", new String[] { data.path + "" } );
+	
 			break;
 		default:
 			break;
 		}
 		return super.onContextItemSelected(item);
 	}
+
 
 	private void initEvent() {
 		arcMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -243,24 +247,29 @@ public class AtyEditNote extends ListActivity {
 
 		switch (data.type) {
 		case MediaType.PHOTO:
-			/*i = new Intent(this, AtyPhotoViewer.class);
-			i.putExtra(AtyPhotoViewer.EXTRA_PATH, data.path);
-			System.out.println("onListItemClick.path:" + data.path);
-			startActivity(i);
-			break;*/
-			
-			//使用Intent
+			/*
+			 * i = new Intent(this, AtyPhotoViewer.class);
+			 * i.putExtra(AtyPhotoViewer.EXTRA_PATH, data.path);
+			 * System.out.println("onListItemClick.path:" + data.path);
+			 * startActivity(i); break;
+			 */
+
+			// 使用Intent
 			Intent imageIntent = new Intent(Intent.ACTION_VIEW);
-			//Uri mUri = Uri.parse("file://" + picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
+			// Uri mUri = Uri.parse("file://" +
+			// picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
 			imageIntent.setDataAndType(imagePath, "image/*");
 			startActivity(imageIntent);
 			break;
 		case MediaType.VIDEO:
-			/*i = new Intent(this, AtyVideoViewer.class);
-			i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
-			startActivity(i);*/
+			/*
+			 * i = new Intent(this, AtyVideoViewer.class);
+			 * i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
+			 * startActivity(i);
+			 */
 			Intent videoIntent = new Intent(Intent.ACTION_VIEW);
-			//Uri mUri = Uri.parse("file://" + picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
+			// Uri mUri = Uri.parse("file://" +
+			// picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
 			videoIntent.setDataAndType(videoPath, "video/*");
 			startActivity(videoIntent);
 			break;
@@ -328,7 +337,6 @@ public class AtyEditNote extends ListActivity {
 				System.out.println("voiceContent:" + voiceContent);
 				etContent.append("/" + stringFormat(voiceContent));
 				System.out.println("____________________________" + wavPath);
-
 				adapter.add(new MediaListCellData(voiceContent, Date, wavPath));
 				adapter.notifyDataSetChanged();
 			}
@@ -423,7 +431,7 @@ public class AtyEditNote extends ListActivity {
 	private SQLiteDatabase dbRead, dbWrite;
 	private String currentPath = null;
 
-	private Uri imagePath;		
+	private Uri imagePath;
 	private Uri videoPath;
 	private Uri wavPath;
 
@@ -450,6 +458,10 @@ public class AtyEditNote extends ListActivity {
 		@Override
 		public int getCount() {
 			return list.size();
+		}
+
+		public void delete(int position) {
+			list.remove(position);
 		}
 
 		@Override
@@ -479,11 +491,11 @@ public class AtyEditNote extends ListActivity {
 					.findViewById(R.id.tvSoundContent);
 			TextView tvMediaDate = (TextView) convertView
 					.findViewById(R.id.tvMediaDate);
-			//ImageView ivAbout = (ImageView) convertView.findViewById(R.id.ivAbout);
-			
+			// ImageView ivAbout = (ImageView)
+			// convertView.findViewById(R.id.ivAbout);
 
 			ivIcon.setImageResource(data.iconId);
-			//ivAbout.setImageResource(R.drawable.ic_settings_about);
+			// ivAbout.setImageResource(R.drawable.ic_settings_about);
 			// System.out.println("icon:"+data.iconId);
 			// ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
 			// MediaStore.Images.Thumbnails.MICRO_KIND));
@@ -566,20 +578,17 @@ public class AtyEditNote extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		/*switch (item.getItemId()) {
-		case android.R.id.home:
-			saveMedia(saveNote());
-			setResult(RESULT_OK);
-			finish();
-
-			return true;
-
-		default:
-			break;
-		}*/
+		/*
+		 * switch (item.getItemId()) { case android.R.id.home:
+		 * saveMedia(saveNote()); setResult(RESULT_OK); finish();
+		 * 
+		 * return true;
+		 * 
+		 * default: break; }
+		 */
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
