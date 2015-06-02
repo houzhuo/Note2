@@ -180,6 +180,7 @@ public class AtyEditNote extends ListActivity {
 						}
 					}
 					currentPath = f.getAbsolutePath();
+					imagePath = Uri.fromFile(f);
 					i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));// 媒体输出路径,存储位置
 					startActivityForResult(i, REQUEST_CODE_GET_PHOTO);
 					break;
@@ -196,6 +197,7 @@ public class AtyEditNote extends ListActivity {
 						}
 					}
 					currentPath = f.getAbsolutePath();
+					videoPath = Uri.fromFile(f);
 					i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
 
 					startActivityForResult(i, REQUEST_CODE_GET_VIDEO);
@@ -241,15 +243,26 @@ public class AtyEditNote extends ListActivity {
 
 		switch (data.type) {
 		case MediaType.PHOTO:
-			i = new Intent(this, AtyPhotoViewer.class);
+			/*i = new Intent(this, AtyPhotoViewer.class);
 			i.putExtra(AtyPhotoViewer.EXTRA_PATH, data.path);
 			System.out.println("onListItemClick.path:" + data.path);
 			startActivity(i);
+			break;*/
+			
+			//使用Intent
+			Intent imageIntent = new Intent(Intent.ACTION_VIEW);
+			//Uri mUri = Uri.parse("file://" + picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
+			imageIntent.setDataAndType(imagePath, "image/*");
+			startActivity(imageIntent);
 			break;
 		case MediaType.VIDEO:
-			i = new Intent(this, AtyVideoViewer.class);
+			/*i = new Intent(this, AtyVideoViewer.class);
 			i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
-			startActivity(i);
+			startActivity(i);*/
+			Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+			//Uri mUri = Uri.parse("file://" + picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
+			videoIntent.setDataAndType(videoPath, "video/*");
+			startActivity(videoIntent);
 			break;
 
 		case MediaType.SOUND:
@@ -410,9 +423,9 @@ public class AtyEditNote extends ListActivity {
 	private SQLiteDatabase dbRead, dbWrite;
 	private String currentPath = null;
 
-	private Uri audioPath;
-	private String recordPath;
-	private String wavPath;
+	private Uri imagePath;		
+	private Uri videoPath;
+	private Uri wavPath;
 
 	private String voiceContent;
 
@@ -466,11 +479,11 @@ public class AtyEditNote extends ListActivity {
 					.findViewById(R.id.tvSoundContent);
 			TextView tvMediaDate = (TextView) convertView
 					.findViewById(R.id.tvMediaDate);
-			ImageView ivAbout = (ImageView) convertView.findViewById(R.id.ivAbout);
+			//ImageView ivAbout = (ImageView) convertView.findViewById(R.id.ivAbout);
 			
 
 			ivIcon.setImageResource(data.iconId);
-			ivAbout.setImageResource(R.drawable.ic_settings_about);
+			//ivAbout.setImageResource(R.drawable.ic_settings_about);
 			// System.out.println("icon:"+data.iconId);
 			// ivIcon.setImageBitmap(getVideoThumbnail(urlvideo, 200, 200,
 			// MediaStore.Images.Thumbnails.MICRO_KIND));

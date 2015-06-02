@@ -38,7 +38,7 @@ public class AtyWelcome extends Activity implements Runnable {
 			e.printStackTrace();
 		}
 		if (name.equals("null")) {
-			startActivity(new Intent(getApplicationContext(), AtySignin.class));
+			startActivity(new Intent(getApplicationContext(), AtyLogin.class));
 			System.out.println("NOT equals:"+name);
 			finish();
 			

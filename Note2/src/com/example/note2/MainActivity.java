@@ -55,7 +55,7 @@ public class MainActivity extends ListActivity {
 			/*
 			 * 将fragment插入到frameLayout中
 			 */
-
+			
 			switch (position) {
 			case 4:
 				Intent i = new Intent(MainActivity.this, AtySettings.class);
