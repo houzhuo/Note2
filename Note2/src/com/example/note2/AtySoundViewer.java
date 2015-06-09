@@ -132,30 +132,14 @@ public class AtySoundViewer extends Activity {
 					m.pause();
 					ifPlay = false;
 
-			}/*
+			}
 				break;
 			case R.id.Button02:
 			
-				 if (ifPlay) {  
-                     m.seekTo(0);  
-                 } else {  
-                     m.reset();  
-                     try {  
-                         m.setDataSource(path);  
-                         m.prepare();// 准备  
-                         m.start();// 开始  
-                     } catch (IllegalArgumentException e) {  
-                         e.printStackTrace();  
-                     } catch (IllegalStateException e) {  
-                         e.printStackTrace();  
-                     } catch (IOException e) {  
-                         e.printStackTrace();  
-                     }  
-                 }  
-                 break;  
+				 finish(); 
 			
 			default:
-				break;*/
+				break;
 
 		}
 		}
