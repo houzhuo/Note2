@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class AtySoundViewer extends Activity {
 	/** Called when the activity is first created. */
@@ -15,12 +16,14 @@ public class AtySoundViewer extends Activity {
 	private SeekBar skb_audio = null;
 	private Button btn_start_audio = null;
 	private Button btn_stop_audio = null;
+	private TextView textView;
 
 	// private boolean ifPlay = false;
 
 	private MediaPlayer m = null;
 
 	public static final String EXTRA_PATH = "path";
+	public static final String EXTRA_CONTENT = "content";
 
 	// private String mp3Path =
 	// "/storage/emulated/0/kgmusic/download/libai.mp3";
@@ -50,6 +53,19 @@ public class AtySoundViewer extends Activity {
 		btn_stop_audio.setOnClickListener(new ClickEvent());
 		skb_audio = (SeekBar) this.findViewById(R.id.SeekBar01);
 		skb_audio.setOnSeekBarChangeListener(new SeekBarChangeEvent());
+		
+
+		textView = (TextView)findViewById(R.id.tvSoundView);
+		String content = getIntent().getStringExtra(EXTRA_CONTENT);
+		System.err.println(content+"");
+		textView.setText(content);
+		
+		
+//		if (content!=null) {
+//		tv_sound_textview.setText(content);
+//		}else {
+//			System.out.println(content+"");
+//		}	
 
 	}
 
@@ -63,6 +79,9 @@ public class AtySoundViewer extends Activity {
 			
 			
 			case R.id.Button01:
+				
+				
+				
 				if (m != null && !ifPlay) {
 					btn_start_audio.setText("ÔÝÍ£");
 

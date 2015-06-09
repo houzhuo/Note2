@@ -277,6 +277,8 @@ public class AtyEditNote extends ListActivity {
 		case MediaType.SOUND:
 			i = new Intent(this, AtySoundViewer.class);
 			i.putExtra(AtySoundViewer.EXTRA_PATH, data.path);
+			i.putExtra(AtySoundViewer.EXTRA_CONTENT, data.content);
+System.out.println("dataContent"+data.content+"");
 			startActivity(i);
 			break;
 		}
