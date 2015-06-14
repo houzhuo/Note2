@@ -331,7 +331,7 @@ int id MorePageTableLayout_Client 0x7f08005d
 int id MorePageTableLayout_Favorite 0x7f08004e
 int id MorePageTableLayout_Follow 0x7f080059
 int id SeekBar01 0x7f080069
-int id action_add 0x7f08008f
+int id action_add 0x7f080091
 int id action_bar 0x7f080020
 int id action_bar_activity_content 0x7f080015
 int id action_bar_container 0x7f08001f
@@ -343,14 +343,14 @@ int id action_context_bar 0x7f080021
 int id action_menu_divider 0x7f080016
 int id action_menu_presenter 0x7f080017
 int id action_mode_close_button 0x7f080028
-int id action_search 0x7f08008e
+int id action_search 0x7f080090
 int id activity_chooser_view_content 0x7f080029
 int id always 0x7f08000b
 int id aty_login_btnlogin 0x7f080065
 int id aty_login_tab1 0x7f08004f
 int id aty_login_tab2 0x7f080051
-int id aty_search_action_search 0x7f080090
-int id aty_search_action_voicesearch 0x7f080091
+int id aty_search_action_search 0x7f080092
+int id aty_search_action_voicesearch 0x7f080093
 int id beginning 0x7f080011
 int id btn_feedback 0x7f08004b
 int id btn_signin 0x7f080053
@@ -359,12 +359,12 @@ int id checkbox 0x7f080031
 int id collapseActionView 0x7f08000d
 int id content_frame 0x7f080041
 int id default_activity_button 0x7f08002c
-int id delete 0x7f08008c
+int id delete 0x7f08008e
 int id dialog 0x7f08000e
 int id disableHome 0x7f080008
 int id drawer_layout 0x7f080040
 int id dropdown 0x7f08000f
-int id edit 0x7f08008a
+int id edit 0x7f08008c
 int id edit_query 0x7f080034
 int id empty_cart_view 0x7f080056
 int id end 0x7f080013
@@ -400,7 +400,7 @@ int id left_drawer 0x7f080042
 int id left_top 0x7f08001a
 int id listMode 0x7f080001
 int id list_item 0x7f08002d
-int id menu_refresh 0x7f08008d
+int id menu_refresh 0x7f08008f
 int id middle 0x7f080012
 int id more_page_row0 0x7f080058
 int id more_page_row1 0x7f08005a
@@ -436,7 +436,7 @@ int id search_plate 0x7f08003a
 int id search_src_text 0x7f08003b
 int id search_voice_btn 0x7f08003f
 int id seekbarLayout 0x7f080067
-int id share 0x7f08008b
+int id share 0x7f08008d
 int id shortcut 0x7f080032
 int id showCustom 0x7f080007
 int id showHome 0x7f080004
@@ -453,6 +453,8 @@ int id title 0x7f08002f
 int id titleText 0x7f080048
 int id top_action_bar 0x7f080024
 int id top_relative 0x7f080043
+int id topic1 0x7f08008a
+int id topic2 0x7f08008b
 int id tvContent 0x7f080089
 int id tvDate 0x7f080088
 int id tvMediaDate 0x7f080085
@@ -516,6 +518,7 @@ int layout media_list_cell 0x7f030028
 int layout notes_list_cell 0x7f030029
 int layout right_bottom 0x7f03002a
 int layout support_simple_spinner_dropdown_item 0x7f03002b
+int layout topic 0x7f03002c
 int menu context 0x7f0e0000
 int menu edit_actionbar_menu 0x7f0e0001
 int menu main 0x7f0e0002

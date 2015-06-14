@@ -69,6 +69,7 @@
         </activity>
         <activity android:name="AtyUser" >
         </activity>
+        <activity android:name="AtyTopic"></activity>
     </application>
 
 </manifest>

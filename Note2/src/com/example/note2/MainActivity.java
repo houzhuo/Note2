@@ -279,8 +279,10 @@ public class MainActivity extends ListActivity {
 					AtyEditNote.class), REQUEST_CODE_ADD_NOTE);
 			break;
 		case R.id.action_search:
-			Intent intent = new Intent(MainActivity.this, AtySearch.class);
+			Intent intent = new Intent(MainActivity.this, AtyTopic.class);
 			startActivity(intent);
+//			Intent intent = new Intent(MainActivity.this, AtySearch.class);
+//			startActivity(intent);
 
 		default:
 			break;

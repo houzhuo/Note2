@@ -1199,7 +1199,7 @@ containing a value of this type.
         public static final int MorePageTableLayout_Favorite=0x7f08004e;
         public static final int MorePageTableLayout_Follow=0x7f080059;
         public static final int SeekBar01=0x7f080069;
-        public static final int action_add=0x7f08008f;
+        public static final int action_add=0x7f080091;
         public static final int action_bar=0x7f080020;
         public static final int action_bar_activity_content=0x7f080015;
         public static final int action_bar_container=0x7f08001f;
@@ -1211,14 +1211,14 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f080016;
         public static final int action_menu_presenter=0x7f080017;
         public static final int action_mode_close_button=0x7f080028;
-        public static final int action_search=0x7f08008e;
+        public static final int action_search=0x7f080090;
         public static final int activity_chooser_view_content=0x7f080029;
         public static final int always=0x7f08000b;
         public static final int aty_login_btnlogin=0x7f080065;
         public static final int aty_login_tab1=0x7f08004f;
         public static final int aty_login_tab2=0x7f080051;
-        public static final int aty_search_action_search=0x7f080090;
-        public static final int aty_search_action_voicesearch=0x7f080091;
+        public static final int aty_search_action_search=0x7f080092;
+        public static final int aty_search_action_voicesearch=0x7f080093;
         public static final int beginning=0x7f080011;
         public static final int btn_feedback=0x7f08004b;
         public static final int btn_signin=0x7f080053;
@@ -1227,12 +1227,12 @@ containing a value of this type.
         public static final int collapseActionView=0x7f08000d;
         public static final int content_frame=0x7f080041;
         public static final int default_activity_button=0x7f08002c;
-        public static final int delete=0x7f08008c;
+        public static final int delete=0x7f08008e;
         public static final int dialog=0x7f08000e;
         public static final int disableHome=0x7f080008;
         public static final int drawer_layout=0x7f080040;
         public static final int dropdown=0x7f08000f;
-        public static final int edit=0x7f08008a;
+        public static final int edit=0x7f08008c;
         public static final int edit_query=0x7f080034;
         public static final int empty_cart_view=0x7f080056;
         public static final int end=0x7f080013;
@@ -1268,7 +1268,7 @@ containing a value of this type.
         public static final int left_top=0x7f08001a;
         public static final int listMode=0x7f080001;
         public static final int list_item=0x7f08002d;
-        public static final int menu_refresh=0x7f08008d;
+        public static final int menu_refresh=0x7f08008f;
         public static final int middle=0x7f080012;
         public static final int more_page_row0=0x7f080058;
         public static final int more_page_row1=0x7f08005a;
@@ -1304,7 +1304,7 @@ containing a value of this type.
         public static final int search_src_text=0x7f08003b;
         public static final int search_voice_btn=0x7f08003f;
         public static final int seekbarLayout=0x7f080067;
-        public static final int share=0x7f08008b;
+        public static final int share=0x7f08008d;
         public static final int shortcut=0x7f080032;
         public static final int showCustom=0x7f080007;
         public static final int showHome=0x7f080004;
@@ -1321,6 +1321,8 @@ containing a value of this type.
         public static final int titleText=0x7f080048;
         public static final int top_action_bar=0x7f080024;
         public static final int top_relative=0x7f080043;
+        public static final int topic1=0x7f08008a;
+        public static final int topic2=0x7f08008b;
         public static final int tvContent=0x7f080089;
         public static final int tvDate=0x7f080088;
         public static final int tvMediaDate=0x7f080085;
@@ -1410,6 +1412,7 @@ containing a value of this type.
         public static final int notes_list_cell=0x7f030029;
         public static final int right_bottom=0x7f03002a;
         public static final int support_simple_spinner_dropdown_item=0x7f03002b;
+        public static final int topic=0x7f03002c;
     }
     public static final class menu {
         public static final int context=0x7f0e0000;
