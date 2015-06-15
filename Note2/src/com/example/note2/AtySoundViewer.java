@@ -16,6 +16,8 @@ public class AtySoundViewer extends Activity {
 	private SeekBar skb_audio = null;
 	private Button btn_start_audio = null;
 	private Button btn_stop_audio = null;
+	private TextView tvSoundTopic;
+	private TextView tvSoundContent;
 	private TextView textView;
 
 	// private boolean ifPlay = false;
@@ -24,6 +26,7 @@ public class AtySoundViewer extends Activity {
 
 	public static final String EXTRA_PATH = "path";
 	public static final String EXTRA_CONTENT = "content";
+	public static final String EXTRA_TOPIC = "topic";
 
 	// private String mp3Path =
 	// "/storage/emulated/0/kgmusic/download/libai.mp3";
@@ -54,11 +57,19 @@ public class AtySoundViewer extends Activity {
 		skb_audio = (SeekBar) this.findViewById(R.id.SeekBar01);
 		skb_audio.setOnSeekBarChangeListener(new SeekBarChangeEvent());
 		
-
-		textView = (TextView)findViewById(R.id.tvSoundView);
+		tvSoundTopic = (TextView)findViewById(R.id.tvSoundviewTopic);
+		
+		String topic = getIntent().getStringExtra(EXTRA_TOPIC);
+		System.err.println("soundviewertopic"+topic+"");
+		tvSoundTopic.setText(topic);
+		
+		tvSoundContent = (TextView)findViewById(R.id.tvSoundViewContent);
+		
 		String content = getIntent().getStringExtra(EXTRA_CONTENT);
 		System.err.println(content+"");
-		textView.setText(content);
+		tvSoundContent.setText(content);
+		
+		
 		
 		
 //		if (content!=null) {

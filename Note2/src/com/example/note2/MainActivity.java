@@ -101,7 +101,7 @@ public class MainActivity extends ListActivity {
 		adapter = new SimpleCursorAdapter(this, R.layout.notes_list_cell, null,
 				new String[] { NotesDB.COLUMN_NAME_NOTE_NAME,
 						NotesDB.COLUMN_NAME_NOTE_DATE,
-						NotesDB.COLUMN_NAME_NOTE_CONTENT }, new int[] {
+						NotesDB.COLUMN_NAME_NOTE_TOPIC }, new int[] {
 						R.id.tvName, R.id.tvDate, R.id.tvContent });
 		setListAdapter(adapter);
 
@@ -279,10 +279,9 @@ public class MainActivity extends ListActivity {
 					AtyEditNote.class), REQUEST_CODE_ADD_NOTE);
 			break;
 		case R.id.action_search:
-			Intent intent = new Intent(MainActivity.this, AtyTopic.class);
+		
+		Intent intent = new Intent(MainActivity.this, AtySearch.class);
 			startActivity(intent);
-//			Intent intent = new Intent(MainActivity.this, AtySearch.class);
-//			startActivity(intent);
 
 		default:
 			break;
@@ -341,7 +340,7 @@ public class MainActivity extends ListActivity {
 		i.putExtra(AtyEditNote.EXTRA_NOTE_NAME,
 				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)));
 		i.putExtra(AtyEditNote.EXTRA_NOTE_CONTENT,
-				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_CONTENT)));
+				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_TOPIC)));
 		startActivityForResult(i, REQUEST_CODE_EDIT_NOTE);
 
 		super.onListItemClick(l, v, position, id);

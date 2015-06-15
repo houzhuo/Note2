@@ -119,7 +119,7 @@ public class AtySearch extends ListActivity {
 	private void doMySearch(String query) {
 		int nameId = -1;
 		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
-				NotesDB.COLUMN_NAME_NOTE_CONTENT + " like?", new String[] { "%"
+				NotesDB.COLUMN_NAME_NOTE_TOPIC + " like?", new String[] { "%"
 						+ query + "%" }, null, null, null);
 		
 
@@ -127,7 +127,7 @@ public class AtySearch extends ListActivity {
 			simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.notes_list_cell, c,
 					new String[] { NotesDB.COLUMN_NAME_NOTE_NAME,
 					NotesDB.COLUMN_NAME_NOTE_DATE,
-					NotesDB.COLUMN_NAME_NOTE_CONTENT }, new int[] {
+					NotesDB.COLUMN_NAME_NOTE_TOPIC }, new int[] {
 					R.id.tvName, R.id.tvDate, R.id.tvContent });
 			nameId = c.getInt(c
 					.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME));
@@ -147,7 +147,7 @@ public class AtySearch extends ListActivity {
 	private void doVoiceMySearch(String query) {
 	
 		Cursor c = dbRead.query(NotesDB.TABLE_NAME_NOTES, null,
-				NotesDB.COLUMN_NAME_NOTE_CONTENT + " like?", new String[] { "%"
+				NotesDB.COLUMN_NAME_NOTE_TOPIC + " like?", new String[] { "%"
 						+ query + "%" }, null, null, null);
 		
 
@@ -155,7 +155,7 @@ public class AtySearch extends ListActivity {
 			simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.notes_list_cell, c,
 					new String[] { NotesDB.COLUMN_NAME_NOTE_NAME,
 					NotesDB.COLUMN_NAME_NOTE_DATE,
-					NotesDB.COLUMN_NAME_NOTE_CONTENT }, new int[] {
+					NotesDB.COLUMN_NAME_NOTE_TOPIC }, new int[] {
 					R.id.tvName, R.id.tvDate, R.id.tvContent });
 			
 			setListAdapter(simpleCursorAdapter);
@@ -303,7 +303,7 @@ public class AtySearch extends ListActivity {
 		i.putExtra(AtyEditNote.EXTRA_NOTE_NAME,
 				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)));
 		i.putExtra(AtyEditNote.EXTRA_NOTE_CONTENT,
-				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_CONTENT)));
+				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_TOPIC)));
 		startActivityForResult(i, REQUEST_CODE_EDIT_NOTE);
 	}
 	@Override

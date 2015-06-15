@@ -21,7 +21,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tvSoundContent"
+            android:id="@+id/tvMeidaTopic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -40,6 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/tvSoundContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 

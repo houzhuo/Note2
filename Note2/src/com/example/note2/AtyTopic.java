@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class AtyTopic extends Activity implements Runnable{
 
-	private TextView textView;
+	/*private TextView textView;
 	private Button button;
 	
 	@Override
@@ -31,7 +31,7 @@ public class AtyTopic extends Activity implements Runnable{
 		
 		Thread t = new Thread(AtyTopic.this); // 创建新线程
 		t.start(); // 开启线程
-	}
+	}*/
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

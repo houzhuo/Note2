@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import ECSConnecter.TopicConnecter;
 import android.R.integer;
 import android.app.ActionBar;
 import android.app.ListActivity;
@@ -65,7 +66,7 @@ public class AtyEditNote extends ListActivity {
 		setListAdapter(adapter);
 
 		etName = (EditText) findViewById(R.id.etName);
-		etContent = (EditText) findViewById(R.id.etContent);
+		etTopic = (EditText) findViewById(R.id.etTopic);
 		imageBack = (ImageView) findViewById(R.id.ic_atyedit_back);
 		imageBack.setOnClickListener(btn_back_onclickHandler);
 
@@ -73,7 +74,7 @@ public class AtyEditNote extends ListActivity {
 
 		if (noteId > -1) {
 			etName.setText(getIntent().getStringExtra(EXTRA_NOTE_NAME));
-			etContent.setText(getIntent().getStringExtra(EXTRA_NOTE_CONTENT));
+			etTopic.setText(getIntent().getStringExtra(EXTRA_NOTE_CONTENT));
 
 			Cursor c = dbRead.query(NotesDB.TABLE_NAME_MEDIA, null,
 					NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID + "=?",
@@ -83,11 +84,13 @@ public class AtyEditNote extends ListActivity {
 
 				adapter.add(new MediaListCellData(
 						c.getString(c
-								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
+								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_TOPIC)),
 						c.getString(c
 								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_DATE)),
 						c.getString(c
 								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_PATH)),
+						c.getString(c
+								.getColumnIndex(NotesDB.COLUMN_NAME_MEDIA_CONTENT)),
 						c.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID))));
 			}
 			adapter.notifyDataSetChanged();
@@ -153,15 +156,16 @@ public class AtyEditNote extends ListActivity {
 			MediaListCellData data = adapter.getItem(position);
 			adapter.delete(position);
 			adapter.notifyDataSetChanged();
-			dbWrite.delete(NotesDB.TABLE_NAME_MEDIA, NotesDB.COLUMN_NAME_MEDIA_PATH + "=?", new String[] { data.path + "" } );
-	
+			dbWrite.delete(NotesDB.TABLE_NAME_MEDIA,
+					NotesDB.COLUMN_NAME_MEDIA_PATH + "=?",
+					new String[] { data.path + "" });
+
 			break;
 		default:
 			break;
 		}
 		return super.onContextItemSelected(item);
 	}
-
 
 	private void initEvent() {
 		arcMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -278,7 +282,10 @@ public class AtyEditNote extends ListActivity {
 			i = new Intent(this, AtySoundViewer.class);
 			i.putExtra(AtySoundViewer.EXTRA_PATH, data.path);
 			i.putExtra(AtySoundViewer.EXTRA_CONTENT, data.content);
-System.out.println("dataContent"+data.content+"");
+			System.out.println("++++++++++++++++++++++"+data.content);
+			i.putExtra(AtySoundViewer.EXTRA_TOPIC, stringFormat(data.topic));
+			
+			System.out.println("dataContent" + data.topic + "");
 			startActivity(i);
 			break;
 		}
@@ -296,7 +303,8 @@ System.out.println("dataContent"+data.content+"");
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData("Photos", Date, currentPath));
+				adapter.add(new MediaListCellData("Photos", Date, currentPath,
+						"no media content"));
 				adapter.notifyDataSetChanged();
 				/*
 				 * Uri audioPath = data.getData(); Toast.makeText(this,
@@ -311,7 +319,8 @@ System.out.println("dataContent"+data.content+"");
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData("Videos", Date, currentPath));
+				adapter.add(new MediaListCellData("Videos", Date, currentPath,
+						"no media content"));
 				adapter.notifyDataSetChanged();
 				/*
 				 * Uri audioPath = data.getData(); Toast.makeText(this,
@@ -321,7 +330,7 @@ System.out.println("dataContent"+data.content+"");
 			break;
 		case REQUEST_CODE_GET_SOUND:
 
-			if (resultCode == RESULT_OK || resultCode == 3) {
+			if (resultCode == RESULT_OK || resultCode == 3 || resultCode == 5) {
 
 				DateFormat date = DateFormat.getDateTimeInstance(
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
@@ -334,12 +343,15 @@ System.out.println("dataContent"+data.content+"");
 						IatDemo.VOICE_EXTRA_PATH);
 				voiceContent = data.getExtras().getString(
 						IatDemo.VOICE_EXTRA_CONTENT);
-				// Toast.makeText(AtyEditNote.this, voiceContent,
-				// Toast.LENGTH_LONG);
+
+				topic = data.getExtras().getString(IatDemo.VOICE_EXTRA_TOPIC);
+				System.out.println("aty topic  " + topic + "");
+				
 				System.out.println("voiceContent:" + voiceContent);
-				etContent.append("/" + stringFormat(voiceContent));
+				etTopic.append("/" + stringFormat(topic+""));
 				System.out.println("____________________________" + wavPath);
-				adapter.add(new MediaListCellData(voiceContent, Date, wavPath));
+				adapter.add(new MediaListCellData(topic, Date, wavPath,
+						voiceContent));
 				adapter.notifyDataSetChanged();
 			}
 			break;
@@ -369,15 +381,16 @@ System.out.println("dataContent"+data.content+"");
 
 			if (data.id <= -1) {// data.id初始即为-1
 				System.out.println("dataID:" + data.id);
-				System.out.println("dataContent:" + data.content);
-				if (data.content != null) {
+				System.out.println("dataTopic:" + data.topic);
+				if (data.topic != null) {
 					cv = new ContentValues();
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_PATH, data.path);
 					System.out.println("saveMedia:data.path:" + data.path);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID, noteId);
+					cv.put(NotesDB.COLUMN_NAME_MEDIA_TOPIC, data.topic);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_CONTENT, data.content);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_DATE, data.date);
-					System.out.println("++++" + data.content);
+					System.out.println("++++" + data.topic);
 					// System.out.println(data.content.toString());
 					dbWrite.insert(NotesDB.TABLE_NAME_MEDIA, null, cv);
 				} else {
@@ -386,7 +399,7 @@ System.out.println("dataContent"+data.content+"");
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID, noteId);
 					cv.put(NotesDB.COLUMN_NAME_MEDIA_DATE, data.date);
 					// cv.put(NotesDB.COLUMN_NAME_MEDIA_CONTENT,);
-					System.out.println("else dataContent" + data.content);
+					System.out.println("else dataTopic" + data.topic);
 					// System.out.println(data.content.toString());
 					dbWrite.insert(NotesDB.TABLE_NAME_MEDIA, null, cv);
 				}
@@ -403,7 +416,7 @@ System.out.println("dataContent"+data.content+"");
 
 		ContentValues cv = new ContentValues();
 		cv.put(NotesDB.COLUMN_NAME_NOTE_NAME, etName.getText().toString());
-		cv.put(NotesDB.COLUMN_NAME_NOTE_CONTENT, etContent.getText().toString());
+		cv.put(NotesDB.COLUMN_NAME_NOTE_TOPIC, etTopic.getText().toString());
 		cv.put(NotesDB.COLUMN_NAME_NOTE_DATE, Date);
 		// cv.put(NotesDB.COLUMN_NAME_NOTE_DATE, new SimpleDateFormat(
 		// "yyyy-MM-dd HH:mm:ss").format(new Date()));
@@ -427,7 +440,7 @@ System.out.println("dataContent"+data.content+"");
 
 	private int noteId = -1;
 	private ImageView imageBack;
-	private EditText etName, etContent;
+	private EditText etName, etTopic;
 	private MediaAdapter adapter;
 	private NotesDB db;
 	private SQLiteDatabase dbRead, dbWrite;
@@ -438,6 +451,7 @@ System.out.println("dataContent"+data.content+"");
 	private Uri wavPath;
 
 	private String voiceContent;
+	private String topic;
 
 	public static final int REQUEST_CODE_GET_PHOTO = 1;
 	public static final int REQUEST_CODE_GET_VIDEO = 2;
@@ -489,10 +503,12 @@ System.out.println("dataContent"+data.content+"");
 			ImageView ivIcon = (ImageView) convertView
 					.findViewById(R.id.ivIcon);
 			TextView tvPath = (TextView) convertView.findViewById(R.id.tvPath);
-			TextView tvSoundContent = (TextView) convertView
-					.findViewById(R.id.tvSoundContent);
+			TextView tvSoundTopic = (TextView) convertView
+					.findViewById(R.id.tvMeidaTopic);
 			TextView tvMediaDate = (TextView) convertView
 					.findViewById(R.id.tvMediaDate);
+			TextView tvMediaContent = (TextView) convertView
+					.findViewById(R.id.tvSoundContent);
 			// ImageView ivAbout = (ImageView)
 			// convertView.findViewById(R.id.ivAbout);
 
@@ -503,7 +519,8 @@ System.out.println("dataContent"+data.content+"");
 			// MediaStore.Images.Thumbnails.MICRO_KIND));
 			tvPath.setText(data.path);
 			tvMediaDate.setText(data.date);
-			tvSoundContent.setText(data.content);
+			tvSoundTopic.setText(data.topic);
+			tvMediaContent.setText(data.content);
 			return convertView;
 		}
 
@@ -526,14 +543,17 @@ System.out.println("dataContent"+data.content+"");
 		int type = 0;
 		int id = -1;
 		String path = "";
+		String topic = "";
 		String content = "";
 		String date = "";
 		int iconId = R.drawable.ic_launcher;
 
-		public MediaListCellData(String content, String date, String path) {
-			this.content = content;
+		public MediaListCellData(String topic, String date, String path,
+				String content) {
+			this.topic = topic;
 			this.date = date;
 			this.path = path;
+			this.content = content;
 
 			if (path.endsWith(".jpg")) {
 				iconId = R.drawable.icon_photo;
@@ -553,10 +573,10 @@ System.out.println("dataContent"+data.content+"");
 			 */
 		}
 
-		public MediaListCellData(String content, String date, String path,
-				int id) {
+		public MediaListCellData(String topic, String date, String path,
+				String content, int id) {
 
-			this(content, date, path);
+			this(topic, date, path, content);
 			this.id = id;
 		}
 

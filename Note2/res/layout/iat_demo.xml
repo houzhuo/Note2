@@ -1,23 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@drawable/feedback_background"
+    android:padding="5dp" >
 
-    <EditText
-        android:id="@+id/iat_text"
-        android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="top|left"
-        android:paddingBottom="20dip"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/iat_Recognize"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="点击说话" />
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+<!-- 
+        <TextView
+            android:id="@+id/iat_textviewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/feedback_background"
+            android:text="标签:"
+            android:textColor="#ff888888" />
 
+        <TextView
+            android:id="@+id/iat_topic"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="top|left"
+            android:paddingBottom="20dip"
+            android:textSize="20sp" />
+ -->
+        <TextView
+            android:id="@+id/iat_textviewsplite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/feedback_background"
+            android:text="内容:"
+            android:textColor="#ff888888" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/iat_text"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="5.54"
+            android:gravity="top|left"
+            android:paddingBottom="20dip"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:gravity="center" >
+
+        <ImageButton
+            android:id="@+id/iat_Recognize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher" />
+    </LinearLayout>
+
+</RelativeLayout>
