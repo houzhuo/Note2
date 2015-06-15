@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     >
-
-
+    android:layout_height="match_parent" >
 
     <ImageView
         android:id="@+id/img_user"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_marginTop="-50dp"
         android:contentDescription="@null"
         android:scaleType="fitXY"
@@ -63,18 +60,6 @@
                     -->
 
                     <TextView
-                        android:id="@+id/user_website"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/user_post"
-                        android:layout_centerVertical="true"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="houzhuo.net"
-                        android:textColor="#A1A1A1"
-                        android:textSize="12sp" />
-
-                    <TextView
                         android:id="@+id/user_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -99,6 +84,17 @@
                         android:textColor="#B1B1B1"
                         android:textSize="12sp" />
 
+                    <TextView
+                        android:id="@+id/user_website"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/user_age"
+                        android:layout_centerVertical="true"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="houzhuo.net"
+                        android:textColor="#A1A1A1"
+                        android:textSize="12sp" />
                 </RelativeLayout>
 
                 <ImageView
@@ -127,7 +123,7 @@
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
-                 <FrameLayout
+                <FrameLayout
                     android:id="@+id/user_divider_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -154,9 +150,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-              
                 android:background="#F7F4F0"
                 android:orientation="vertical"
                 android:paddingBottom="8dp" >
@@ -167,11 +162,10 @@
                     android:layout_marginLeft="13dp"
                     android:layout_marginTop="13dp"
                     android:ellipsize="end"
-                    android:singleLine="true"
                     android:text="用户推荐tip"
                     android:textColor="#A1A1A1"
-                    android:textSize="12sp" />
-
+                    android:textSize="15sp" />
+                
                 <TableLayout
                     android:id="@+id/table_layout"
                     android:layout_width="match_parent"
@@ -180,8 +174,14 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="5dp"
                     android:background="#106184" />
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
 
+                
+
+            </LinearLayout>
+
+            
+        </LinearLayout>
+        
+			
+    </RelativeLayout>
 </RelativeLayout>

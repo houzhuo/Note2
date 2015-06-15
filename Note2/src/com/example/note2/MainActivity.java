@@ -178,13 +178,13 @@ public class MainActivity extends ListActivity {
 				itemId = cursor.getInt(cursor
 						.getColumnIndex(NotesDB.COLUMN_NAME_ID));
 				switch (index) {
-				case 0:
+				case 1:
 					dbWrite.delete(NotesDB.TABLE_NAME_NOTES,
 							NotesDB.COLUMN_NAME_ID + "=?",
 							new String[] { itemId + "" });
 					refreshNotesListView();
 					break;
-				case 1:
+				case 0:
 					Toast.makeText(MainActivity.this, "you did it!!",
 							Toast.LENGTH_LONG).show();
 					break;
@@ -339,7 +339,7 @@ public class MainActivity extends ListActivity {
 				c.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID)));
 		i.putExtra(AtyEditNote.EXTRA_NOTE_NAME,
 				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)));
-		i.putExtra(AtyEditNote.EXTRA_NOTE_CONTENT,
+		i.putExtra(AtyEditNote.EXTRA_NOTE_TOPIC,
 				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_TOPIC)));
 		startActivityForResult(i, REQUEST_CODE_EDIT_NOTE);
 

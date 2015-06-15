@@ -441,12 +441,15 @@ public class IatDemo extends Activity implements Runnable {
 
 		// TopicData data = conn.getData();
 		ArrayList<String> list = conn.getData().getResult();
-
-		for (String string : list) {
-			System.out.println(string);
-			topicList.add(string);
+		if (list!=null) {
+			for (String string : list) {
+				System.out.println(string);
+				topicList.add(string);
+			}	
+		}else {
+			topicList.add("服务器在休息。。") ;
 		}
-		System.out.println("topicList " + topicList);
+		
 
 	}
 

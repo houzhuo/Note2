@@ -70,6 +70,7 @@
                         android:paddingTop="10.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_general"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_setting"
@@ -125,6 +126,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_private"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_privacy"
@@ -155,6 +157,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_message"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_message"
@@ -185,6 +188,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_history"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_history"
@@ -240,6 +244,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_net"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_net"
@@ -270,6 +275,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_update"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_update"
@@ -300,6 +306,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_about"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_about"
@@ -330,6 +337,7 @@
                         android:paddingTop="16.0dip" >
 
                         <TextView
+                            android:id="@+id/settings_logout"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:drawableLeft="@drawable/ic_settings_logout"

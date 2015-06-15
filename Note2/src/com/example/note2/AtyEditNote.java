@@ -74,7 +74,7 @@ public class AtyEditNote extends ListActivity {
 
 		if (noteId > -1) {
 			etName.setText(getIntent().getStringExtra(EXTRA_NOTE_NAME));
-			etTopic.setText(getIntent().getStringExtra(EXTRA_NOTE_CONTENT));
+			etTopic.setText(getIntent().getStringExtra(EXTRA_NOTE_TOPIC));
 
 			Cursor c = dbRead.query(NotesDB.TABLE_NAME_MEDIA, null,
 					NotesDB.COLUMN_NAME_MEDIA_OWNER_NOTE_ID + "=?",
@@ -283,7 +283,7 @@ public class AtyEditNote extends ListActivity {
 			i.putExtra(AtySoundViewer.EXTRA_PATH, data.path);
 			i.putExtra(AtySoundViewer.EXTRA_CONTENT, data.content);
 			System.out.println("++++++++++++++++++++++"+data.content);
-			i.putExtra(AtySoundViewer.EXTRA_TOPIC, stringFormat(data.topic));
+			i.putExtra(AtySoundViewer.EXTRA_TOPIC, data.topic);
 			
 			System.out.println("dataContent" + data.topic + "");
 			startActivity(i);
@@ -459,7 +459,7 @@ public class AtyEditNote extends ListActivity {
 
 	public static final String EXTRA_NOTE_ID = "noteId";
 	public static final String EXTRA_NOTE_NAME = "noteName";
-	public static final String EXTRA_NOTE_CONTENT = "noteContent";
+	public static final String EXTRA_NOTE_TOPIC = "noteTopic";
 
 	static class MediaAdapter extends BaseAdapter {
 
@@ -616,8 +616,8 @@ public class AtyEditNote extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 		saveMedia(saveNote());
-		finish();
 		setResult(RESULT_OK);
+		finish();
 	}
 
 	public static String stringFormat(String s) {

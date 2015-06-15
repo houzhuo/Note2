@@ -52,7 +52,7 @@
                 android:layout_marginTop="1dp"
                 android:ems="10"
                 android:singleLine="true"
-                android:text="Cins"
+                
                 android:textColor="@android:color/white"
                 android:textCursorDrawable="@android:color/white"
                 android:textSize="30sp" >
@@ -82,7 +82,7 @@
                 android:lines="1"
                 android:background="@null"
                 android:scrollbars="vertical"
-                android:text="Enjoy your life!"
+                android:singleLine="true"
                 android:textColor="@android:color/white"
                 android:textCursorDrawable="@android:color/white"
                 android:textSize="28.0sp" >

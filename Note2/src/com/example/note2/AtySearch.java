@@ -302,7 +302,7 @@ public class AtySearch extends ListActivity {
 				c.getInt(c.getColumnIndex(NotesDB.COLUMN_NAME_ID)));
 		i.putExtra(AtyEditNote.EXTRA_NOTE_NAME,
 				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_NAME)));
-		i.putExtra(AtyEditNote.EXTRA_NOTE_CONTENT,
+		i.putExtra(AtyEditNote.EXTRA_NOTE_TOPIC,
 				c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_NOTE_TOPIC)));
 		startActivityForResult(i, REQUEST_CODE_EDIT_NOTE);
 	}
