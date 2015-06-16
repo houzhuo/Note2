@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.example.note2.MeidaPut;
+
 import ECSConnecter.TopicConnecter;
 import android.R.integer;
 import android.app.ActionBar;
@@ -16,9 +18,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -46,6 +51,9 @@ public class AtyEditNote extends ListActivity {
 	private ArcMenu arcMenu;
 
 	private ListView mListView;
+	
+	
+	private Handler handler;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -143,11 +151,45 @@ public class AtyEditNote extends ListActivity {
 				.getMenuInfo();
 		// 相应上下文的操作
 		switch (item.getItemId()) {
-		case R.id.edit:
 
-			break;
-		case R.id.share:
-			Toast.makeText(AtyEditNote.this, "share", Toast.LENGTH_LONG).show();
+		case R.id.put:
+			Toast.makeText(AtyEditNote.this, "put", Toast.LENGTH_LONG).show();
+
+			int putPosition = (int) getListAdapter().getItemId(info.position);
+			MediaListCellData d = adapter.getItem(putPosition);
+			System.out.println("-------------------"+d.path+"");
+			String path = d.path.toString();
+			String fileName = path.substring(path.length()-17, path.length());
+			String fileNameWithoutWav = path.substring(path.length()-17, path.length()-4);
+			System.err.println(fileNameWithoutWav);
+			
+			//MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
+			
+
+			/*t.start();
+			System.out.println("线程启动");
+			
+			handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
+				public void handleMessage(Message msg) { // 回调
+					if (msg.what == 1) {
+						if (msg.getData().getString("result")!=null){
+							System.out.println(msg.getData().getString("result")+"");
+							Toast.makeText(getApplicationContext(), msg.getData().getString("result")+"", Toast.LENGTH_SHORT).show();
+						}else {
+							System.out.println(msg.getData().getString("result")+"");
+							Toast.makeText(getApplicationContext(), "服务器去哪儿了。。", Toast.LENGTH_SHORT).show();
+							
+						}
+						
+					}
+					super.handleMessage(msg);
+				}
+
+			};*/
+			
+			
+			
+			
 			break;
 		case R.id.delete:
 			Toast.makeText(AtyEditNote.this, "delete", Toast.LENGTH_LONG)
@@ -282,9 +324,9 @@ public class AtyEditNote extends ListActivity {
 			i = new Intent(this, AtySoundViewer.class);
 			i.putExtra(AtySoundViewer.EXTRA_PATH, data.path);
 			i.putExtra(AtySoundViewer.EXTRA_CONTENT, data.content);
-			System.out.println("++++++++++++++++++++++"+data.content);
+			System.out.println("++++++++++++++++++++++" + data.content);
 			i.putExtra(AtySoundViewer.EXTRA_TOPIC, data.topic);
-			
+
 			System.out.println("dataContent" + data.topic + "");
 			startActivity(i);
 			break;
@@ -346,9 +388,9 @@ public class AtyEditNote extends ListActivity {
 
 				topic = data.getExtras().getString(IatDemo.VOICE_EXTRA_TOPIC);
 				System.out.println("aty topic  " + topic + "");
-				
+
 				System.out.println("voiceContent:" + voiceContent);
-				etTopic.append("/" + stringFormat(topic+""));
+				etTopic.append("/" + stringFormat(topic + ""));
 				System.out.println("____________________________" + wavPath);
 				adapter.add(new MediaListCellData(topic, Date, wavPath,
 						voiceContent));

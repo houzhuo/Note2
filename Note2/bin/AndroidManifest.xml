@@ -70,6 +70,7 @@
         <activity android:name="AtyUser" >
         </activity>
         <activity android:name="AtyTopic"></activity>
+        <activity android:name="MeidaPut"></activity>
     </application>
 
 </manifest>

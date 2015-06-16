@@ -280,7 +280,7 @@ public class MainActivity extends ListActivity {
 			break;
 		case R.id.action_search:
 		
-		Intent intent = new Intent(MainActivity.this, AtySearch.class);
+		Intent intent = new Intent(MainActivity.this, MeidaPut.class);
 			startActivity(intent);
 
 		default:

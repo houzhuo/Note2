@@ -10,16 +10,12 @@
         android:showAsAction="always"
         />
      -->
-     <item
-        android:id="@+id/edit"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="编辑"/>
+     
     <item
-        android:id="@+id/share"
+        android:id="@+id/put"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="收藏"/>
+        android:title="上传"/>
     <item
         android:id="@+id/delete"
         android:orderInCategory="100"

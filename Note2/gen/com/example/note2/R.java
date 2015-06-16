@@ -1223,6 +1223,7 @@ containing a value of this type.
         public static final int btn_feedback=0x7f08004b;
         public static final int btn_signin=0x7f080053;
         public static final int btnlogin=0x7f080055;
+        public static final int buttonMedia=0x7f08008f;
         public static final int checkbox=0x7f080031;
         public static final int collapseActionView=0x7f08000d;
         public static final int content_frame=0x7f080041;
@@ -1232,7 +1233,6 @@ containing a value of this type.
         public static final int disableHome=0x7f080008;
         public static final int drawer_layout=0x7f080040;
         public static final int dropdown=0x7f08000f;
-        public static final int edit=0x7f080099;
         public static final int edit_query=0x7f080034;
         public static final int empty_cart_view=0x7f080056;
         public static final int end=0x7f080013;
@@ -1263,7 +1263,7 @@ containing a value of this type.
         public static final int img_user=0x7f080076;
         public static final int item_icon=0x7f080082;
         public static final int item_title=0x7f080083;
-        public static final int ivIcon=0x7f08008f;
+        public static final int ivIcon=0x7f080090;
         public static final int left_bottom=0x7f08001b;
         public static final int left_drawer=0x7f080042;
         public static final int left_top=0x7f08001a;
@@ -1286,6 +1286,7 @@ containing a value of this type.
         public static final int normal=0x7f080000;
         public static final int progress_circular=0x7f080018;
         public static final int progress_horizontal=0x7f080019;
+        public static final int put=0x7f08009a;
         public static final int radio=0x7f080033;
         public static final int relativeLayout1=0x7f08004d;
         public static final int right_bottom=0x7f08001d;
@@ -1315,7 +1316,6 @@ containing a value of this type.
         public static final int settings_net=0x7f080063;
         public static final int settings_private=0x7f08005c;
         public static final int settings_update=0x7f080065;
-        public static final int share=0x7f08009a;
         public static final int shortcut=0x7f080032;
         public static final int showCustom=0x7f080007;
         public static final int showHome=0x7f080004;
@@ -1333,15 +1333,15 @@ containing a value of this type.
         public static final int titleText=0x7f080048;
         public static final int top_action_bar=0x7f080024;
         public static final int top_relative=0x7f080043;
-        public static final int topic1=0x7f080097;
-        public static final int topic2=0x7f080098;
-        public static final int tvContent=0x7f080096;
-        public static final int tvDate=0x7f080095;
-        public static final int tvMediaDate=0x7f080091;
-        public static final int tvMeidaTopic=0x7f080090;
-        public static final int tvName=0x7f080094;
-        public static final int tvPath=0x7f080092;
-        public static final int tvSoundContent=0x7f080093;
+        public static final int topic1=0x7f080098;
+        public static final int topic2=0x7f080099;
+        public static final int tvContent=0x7f080097;
+        public static final int tvDate=0x7f080096;
+        public static final int tvMediaDate=0x7f080092;
+        public static final int tvMeidaTopic=0x7f080091;
+        public static final int tvName=0x7f080095;
+        public static final int tvPath=0x7f080093;
+        public static final int tvSoundContent=0x7f080094;
         public static final int tvSoundViewContent=0x7f080072;
         public static final int tvSoundviewTopic=0x7f080070;
         public static final int up=0x7f080025;
@@ -1421,11 +1421,12 @@ containing a value of this type.
         public static final int iat_demo=0x7f030025;
         public static final int left_bottom=0x7f030026;
         public static final int list_header=0x7f030027;
-        public static final int media_list_cell=0x7f030028;
-        public static final int notes_list_cell=0x7f030029;
-        public static final int right_bottom=0x7f03002a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002b;
-        public static final int topic=0x7f03002c;
+        public static final int media=0x7f030028;
+        public static final int media_list_cell=0x7f030029;
+        public static final int notes_list_cell=0x7f03002a;
+        public static final int right_bottom=0x7f03002b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002c;
+        public static final int topic=0x7f03002d;
     }
     public static final class menu {
         public static final int context=0x7f0e0000;
