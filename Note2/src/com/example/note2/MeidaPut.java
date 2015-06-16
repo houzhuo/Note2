@@ -17,6 +17,7 @@ import ECSConnecter.LogConnecter;
 import ECSConnecter.UploadConnecter;
 import OSSConnecter.putObject;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,33 +27,22 @@ import android.widget.Toast;
 
 
 
-public class MeidaPut extends Activity implements Runnable{
+public class MeidaPut extends Thread{
 	
-/*	private String path = "";
+	private String path = "";
 	private String object = "";
 	private String fileName = "";
 	
-	
+	private static String MEDIA_PUT_MESSAGE = "media_put_message";
 	
 	public MeidaPut(String path,String object, String fileName){
 		this.path = path;
 		this.object = object;
 		this.fileName = fileName;
-		
-		
-		
-		
+	
 	}
-	*/
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.media);
-		findViewById(R.id.buttonMedia).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
+	
+		public void upload(){
 				System.out.println("------------------点击监听");
 				isRun = true;
 				// TODO Auto-generated method stub
@@ -60,14 +50,16 @@ public class MeidaPut extends Activity implements Runnable{
 				t.start();
 				
 				handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
+					
+
 					public void handleMessage(Message msg) { // 回调
 						if (msg.what == 1) {
 							if (msg.getData().getString("result")!=null){
-								System.out.println(msg.getData().getString("result")+"");
-								Toast.makeText(getApplicationContext(), msg.getData().getString("result")+"", Toast.LENGTH_SHORT).show();
+								System.out.println(msg.getData().getString("result")+"");	
+								
+								
 							}else {
-								System.out.println(msg.getData().getString("result")+"");
-								Toast.makeText(getApplicationContext(), "服务器去哪儿了。。", Toast.LENGTH_SHORT).show();
+								System.out.println(msg.getData().getString("result")+"");								
 								
 							}
 							
@@ -76,9 +68,9 @@ public class MeidaPut extends Activity implements Runnable{
 					}
 
 				};
-			}
-		});
-	}
+			
+		}
+	
 	
 	public static String getMd5ByFile(File file) throws IOException, NoSuchAlgorithmException {  
         String value = null;  
@@ -107,14 +99,14 @@ public class MeidaPut extends Activity implements Runnable{
 		logconnecter.getXML();
 		logconnecter.readXML();
 		String result = logconnecter.getData().getStatus();
-		System.out.println(result);
+		System.out.println("result  "+result);
 	}
 	
 	public static SimpleDateFormat getTime() {
 		return new SimpleDateFormat("yyyy MM dd  HH:mm:ss");
 	}
 	
-	/*public static void uptest(String path,String object, String fileName) throws NoSuchAlgorithmException, IOException {
+	public static void uptest(String path,String object, String fileName) throws NoSuchAlgorithmException, IOException {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("contentType", "text/plain");
 		map.put("objectKey", "10000000/"+object);
@@ -124,12 +116,14 @@ public class MeidaPut extends Activity implements Runnable{
 		upconnecter.readXML();
 		putObject up = new putObject(upconnecter.getData(), "10000000/"+object, path);
 		up.work();
+		status = up.getStatus();
 		if (up.getStatus() > 199 || up.getStatus() < 300) {
 			logtest("testPut", "10000000/"+object, Long.toString(new File(path).length()), "application/octet-stream", fileName, "10000000", getTime().format(new Date()).toString(), "4:00");
 		} else {
 			System.out.println(up.getStatus());
+			
 		}
-	}*/
+	}
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -138,42 +132,19 @@ public class MeidaPut extends Activity implements Runnable{
 			 * 连接注册进程
 			 */
 			System.out.println("-------------线程启动");
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("contentType", "audio/wav");
-			map.put("objectKey", "10000000/1434350533518.wav");
-			map.put("contentLength", Long.toString(new File("/storage/emulated/0/NotesMedia/1434350533518.wav").length()));
-			UploadConnecter upconnecter = new UploadConnecter(map);
+			
 			try {
-				upconnecter.getXML();
-			} catch (IOException e) {
+				uptest(path, object, fileName);
+			} catch (NoSuchAlgorithmException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			upconnecter.readXML();
-			putObject up = new putObject(upconnecter.getData(), "10000000/1434350533518.wav", "/storage/emulated/0/NotesMedia/1434350533518.wav");
-			try {
-				up.work();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (up.getStatus() > 199 || up.getStatus() < 300) {
-				try {
-					logtest("testPut", "10000000/1434350533518.wav", Long.toString(new File("/storage/emulated/0/NotesMedia/1434350533518.wav").length()), "application/octet-stream", "1434350533518", "10000000", getTime().format(new Date()).toString(), "4:00");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} else {
-				System.out.println(up.getStatus());
-			}
-			//uptest("/storage/emulated/0/NotesMedia/1434350533518.wav", "1434350533518.wav", "1434350533518");
 
 			Message m = handler.obtainMessage(); // 获取一个Message
 			Bundle bundle = new Bundle(); // 获取Bundle对象
 			m.what = 1; // 设置消息标识
-
-			bundle.putLong("result", up.getStatus());
+			
+			bundle.putLong("result", status);
 			// bundle.putString("ID", data.getId()); //保存数据
 
 			//bundle.putLong("ID", data.getId()); // 保存数据
@@ -187,5 +158,6 @@ public class MeidaPut extends Activity implements Runnable{
 	}
 private boolean isRun = false;
 private Handler handler;
+private static int status;
 	
 }

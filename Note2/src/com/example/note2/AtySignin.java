@@ -33,9 +33,9 @@ public class AtySignin extends Activity implements Runnable {
 		public void onClick(View v) {
 			String name = etSigninName.getText().toString();
 			String pwd =  etSigninName.getText().toString();
-			if (name.isEmpty() && pwd.isEmpty()) {
+			if (name.isEmpty() || pwd.isEmpty()) {
 				Toast.makeText(getApplicationContext(), "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
-			}
+			}else{
 				
 			
 			isRun = true;
@@ -62,6 +62,7 @@ public class AtySignin extends Activity implements Runnable {
 
 			};
 			
+		}
 		}
 	};
 	private OnClickListener btn_image_handler = new OnClickListener() {

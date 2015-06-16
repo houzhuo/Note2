@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="libs"/>
+	<classpathentry excluding="lib/" kind="src" path="libs"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
@@ -9,5 +9,8 @@
 	<classpathentry kind="lib" path="E:/workspace/appcompat_v7/libs/android-support-v4.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="F:/adt-bundle-windows-x86_64-20140702/eclipse/plugins/org.apache.commons.logging_1.0.4.v201101211617.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iothz/Documents/Tencent Files/297505308/FileRecv/org.apache.httpcomponents.httpcore_4.3.3.v201411290715.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iothz/Documents/Tencent Files/297505308/FileRecv/org.apache.httpcomponents.httpclient_4.3.6.v201411290715.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

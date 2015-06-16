@@ -163,29 +163,11 @@ public class AtyEditNote extends ListActivity {
 			String fileNameWithoutWav = path.substring(path.length()-17, path.length()-4);
 			System.err.println(fileNameWithoutWav);
 			
-			//MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
+			MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
+			media.upload();
+			//Toast.makeText(AtyEditNote.this, MeidaPut.msg.getData().getString("result"), Toast.LENGTH_SHORT).show();
 			
-
-			/*t.start();
-			System.out.println("线程启动");
 			
-			handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
-				public void handleMessage(Message msg) { // 回调
-					if (msg.what == 1) {
-						if (msg.getData().getString("result")!=null){
-							System.out.println(msg.getData().getString("result")+"");
-							Toast.makeText(getApplicationContext(), msg.getData().getString("result")+"", Toast.LENGTH_SHORT).show();
-						}else {
-							System.out.println(msg.getData().getString("result")+"");
-							Toast.makeText(getApplicationContext(), "服务器去哪儿了。。", Toast.LENGTH_SHORT).show();
-							
-						}
-						
-					}
-					super.handleMessage(msg);
-				}
-
-			};*/
 			
 			
 			

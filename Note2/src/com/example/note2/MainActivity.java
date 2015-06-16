@@ -63,7 +63,7 @@ public class MainActivity extends ListActivity {
 				break;
 			case 3:
 				Intent loginIntent = new Intent(MainActivity.this,
-						AtyLogin.class);
+						AtyDowload.class);
 				startActivity(loginIntent);
 				break;
 			case 2:

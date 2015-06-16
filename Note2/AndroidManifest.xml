@@ -71,6 +71,7 @@
         </activity>
         <activity android:name="AtyTopic"></activity>
         <activity android:name="MeidaPut"></activity>
+        <activity android:name="AtyDowload"></activity>
     </application>
 
 </manifest>

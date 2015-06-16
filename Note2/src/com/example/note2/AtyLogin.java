@@ -55,10 +55,10 @@ public class AtyLogin extends Activity implements Runnable {
 			String name = etLoginName.getText().toString();
 			String pwd = etLoginPwd.getText().toString();
 			System.out.println(name);
-			if (name.isEmpty() && pwd.isEmpty()) {
+			if (name.isEmpty() || pwd.isEmpty()) {
 				Toast.makeText(getApplicationContext(), "用户名或密码不能为空",
 						Toast.LENGTH_SHORT).show();
-			}
+			}else{
 
 			isRun = true;
 			Thread t = new Thread(AtyLogin.this); // 创建新线程
@@ -93,6 +93,7 @@ public class AtyLogin extends Activity implements Runnable {
 				}
 
 			};
+		}
 		}
 	};
 
