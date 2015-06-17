@@ -204,6 +204,7 @@ public class AtySearch extends ListActivity {
 		MenuItem search = menu.findItem(R.id.aty_search_action_search);
 		search.collapseActionView();// Ä¬ÈÏÕ¹¿ªËÑË÷¿ò
 		search.expandActionView();
+		
 
 		// Associate searchable configuration with the SearchView
 		SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);

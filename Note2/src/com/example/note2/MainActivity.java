@@ -63,7 +63,7 @@ public class MainActivity extends ListActivity {
 				break;
 			case 3:
 				Intent loginIntent = new Intent(MainActivity.this,
-						AtyDowload.class);
+						AtyCloud.class);
 				startActivity(loginIntent);
 				break;
 			case 2:
@@ -280,7 +280,7 @@ public class MainActivity extends ListActivity {
 			break;
 		case R.id.action_search:
 		
-		Intent intent = new Intent(MainActivity.this, MeidaPut.class);
+		Intent intent = new Intent(MainActivity.this, AtySearch.class);
 			startActivity(intent);
 
 		default:

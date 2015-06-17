@@ -141,9 +141,10 @@ public class AtyEditNote extends ListActivity {
 		// TODO Auto-generated method stub
 		// 加载xml中的上下文菜单
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.context, menu);
+		inflater.inflate(R.menu.download, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
+	
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
@@ -166,11 +167,7 @@ public class AtyEditNote extends ListActivity {
 			MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
 			media.upload();
 			//Toast.makeText(AtyEditNote.this, MeidaPut.msg.getData().getString("result"), Toast.LENGTH_SHORT).show();
-			
-			
-			
-			
-			
+	
 			
 			break;
 		case R.id.delete:

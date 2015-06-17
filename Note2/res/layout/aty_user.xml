@@ -35,6 +35,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="85dp"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginTop="50dp"
                     android:background="@drawable/actionbar_favor_icon" >
 
@@ -78,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
+                        
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="用户描述:我们没有看过的世界，大到我们无法想象。"
