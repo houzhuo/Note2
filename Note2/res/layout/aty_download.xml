@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+     >
 
-    <ListView
-        android:id="@android:id/list"
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
         android:divider="#c3c3c3"
         android:dividerHeight="0.5dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" >
-    </ListView>
-    
-    
+        android:paddingRight="10dp" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/cloud_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="refresh" />
+
+</RelativeLayout>
