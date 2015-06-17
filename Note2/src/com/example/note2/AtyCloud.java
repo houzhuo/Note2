@@ -162,7 +162,7 @@ public class AtyCloud extends Activity implements Runnable, OnClickListener {
 			Message m = handler.obtainMessage(); // 获取一个Message
 			Bundle bundle = new Bundle(); // 获取Bundle对象
 			m.what = 1;
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < data.size(); i++) {
 				System.out.println(i);
 				System.err.println(data.get(i).getFilename());
 				bundle.putString("filename" + i, data.get(i).getFilename());

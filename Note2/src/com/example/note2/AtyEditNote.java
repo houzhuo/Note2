@@ -141,7 +141,7 @@ public class AtyEditNote extends ListActivity {
 		// TODO Auto-generated method stub
 		// 加载xml中的上下文菜单
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.download, menu);
+		inflater.inflate(R.menu.context, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 	
@@ -154,7 +154,7 @@ public class AtyEditNote extends ListActivity {
 		switch (item.getItemId()) {
 
 		case R.id.put:
-			Toast.makeText(AtyEditNote.this, "put", Toast.LENGTH_LONG).show();
+			Toast.makeText(AtyEditNote.this, "正在上传", Toast.LENGTH_LONG).show();
 
 			int putPosition = (int) getListAdapter().getItemId(info.position);
 			MediaListCellData d = adapter.getItem(putPosition);
@@ -167,7 +167,7 @@ public class AtyEditNote extends ListActivity {
 			MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
 			media.upload();
 			//Toast.makeText(AtyEditNote.this, MeidaPut.msg.getData().getString("result"), Toast.LENGTH_SHORT).show();
-	
+			Toast.makeText(AtyEditNote.this,media.getResult(), Toast.LENGTH_LONG).show();
 			
 			break;
 		case R.id.delete:

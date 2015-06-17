@@ -116,8 +116,15 @@ public class MainActivity extends ListActivity {
 		swipeDelete();
 		
 		iconSet();
+		
+		startCustomService();
 
 	}
+	
+	 private void startCustomService(){
+         Intent intent=new Intent(this,NetCheckService.class);
+         startService(intent);
+    }
 
 	private void iconSet() {
 		// TODO Auto-generated method stub

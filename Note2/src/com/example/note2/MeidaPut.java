@@ -33,7 +33,7 @@ public class MeidaPut extends Thread{
 	private String object = "";
 	private String fileName = "";
 	
-	private static String MEDIA_PUT_MESSAGE = "media_put_message";
+	public  String resultData;
 	
 	public MeidaPut(String path,String object, String fileName){
 		this.path = path;
@@ -41,6 +41,9 @@ public class MeidaPut extends Thread{
 		this.fileName = fileName;
 	
 	}
+		public String getResult(){
+		return resultData;
+		}
 	
 		public void upload(){
 				System.out.println("------------------点击监听");
@@ -48,18 +51,19 @@ public class MeidaPut extends Thread{
 				// TODO Auto-generated method stub
 				Thread t = new Thread(MeidaPut.this);
 				t.start();
-				
+
 				handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
 					
 
 					public void handleMessage(Message msg) { // 回调
 						if (msg.what == 1) {
-							if (msg.getData().getString("result")!=null){
-								System.out.println(msg.getData().getString("result")+"");	
+							resultData = msg.getData().getString("result");
+							if (resultData!=null){
+								System.out.println(resultData+"");	
 								
 								
 							}else {
-								System.out.println(msg.getData().getString("result")+"");								
+								System.out.println(resultData="");								
 								
 							}
 							

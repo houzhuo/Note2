@@ -18,6 +18,7 @@ public class mediaGet extends Thread{
 	
 	private String filename;
 	private String filenameWithWav;
+	
 	public mediaGet(String filename,String filenameWithWav){
 		this.filename = filename;
 		this.filenameWithWav = filenameWithWav;
@@ -36,7 +37,8 @@ public class mediaGet extends Thread{
 			public void handleMessage(Message msg) { // »Øµ÷
 				if (msg.what == 1) {
 					if (msg.getData().getString("result")!=null){
-						System.out.println(msg.getData().getString("result")+"");	
+						System.out.println(msg.getData().getString("result")+"");
+							
 						
 					}else {
 						System.out.println(msg.getData().getString("result")+"");								
@@ -97,6 +99,9 @@ public class mediaGet extends Thread{
 		}
 		
 	}
+	
+	
+
 private boolean isRun = false;
 private Handler handler;
 

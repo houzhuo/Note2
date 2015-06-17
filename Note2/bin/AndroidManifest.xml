@@ -70,6 +70,7 @@
         <activity android:name="AtyUser" >
         </activity>
         <activity android:name="AtyCloud"></activity>
+        <service android:name="NetCheckService"></service>
     </application>
 
 </manifest>
