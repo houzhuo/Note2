@@ -29,14 +29,26 @@
             android:text="上传列表"
             android:textColor="@android:color/white"
             android:textSize="20dp" />
+
+         <TextView
+             android:id="@+id/ic_cloud_download"
+             android:layout_width="wrap_content"
+             android:layout_height="fill_parent"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentTop="true"
+             android:gravity="center_vertical"
+             android:paddingRight="6.0dip"
+             android:textColor="@android:color/white"
+             android:text="已下载" />
+
     </RelativeLayout>
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
-        android:divider="#c3c3c3"
-        android:dividerHeight="0.5dp"
+       android:divider="#00000000"
+            android:dividerHeight="15dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 

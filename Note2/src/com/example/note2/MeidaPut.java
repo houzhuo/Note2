@@ -16,14 +16,9 @@ import java.util.Map;
 import ECSConnecter.LogConnecter;
 import ECSConnecter.UploadConnecter;
 import OSSConnecter.putObject;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
 
 
 
@@ -33,7 +28,7 @@ public class MeidaPut extends Thread{
 	private String object = "";
 	private String fileName = "";
 	
-	public  String resultData;
+	public  static String resultData;
 	
 	public MeidaPut(String path,String object, String fileName){
 		this.path = path;
@@ -54,25 +49,22 @@ public class MeidaPut extends Thread{
 
 				handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
 					
-
 					public void handleMessage(Message msg) { // 回调
 						if (msg.what == 1) {
 							resultData = msg.getData().getString("result");
 							if (resultData!=null){
 								System.out.println(resultData+"");	
 								
-								
 							}else {
-								System.out.println(resultData="");								
-								
+								System.out.println(resultData+"");								
 							}
 							
 						}
 						super.handleMessage(msg);
 					}
-
+					
 				};
-			
+				
 		}
 	
 	
@@ -132,9 +124,9 @@ public class MeidaPut extends Thread{
 	public void run() {
 		// TODO Auto-generated method stub
 		while (!Thread.currentThread().isInterrupted() && isRun == true) {
-			/*
-			 * 连接注册进程
-			 */
+			
+			
+			 
 			System.out.println("-------------线程启动");
 			
 			try {

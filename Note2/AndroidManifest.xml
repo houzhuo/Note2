@@ -71,6 +71,7 @@
         </activity>
         <activity android:name="AtyCloud"></activity>
         <service android:name="NetCheckService"></service>
+        <activity android:name="AtyDownload"></activity>
     </application>
 
 </manifest>

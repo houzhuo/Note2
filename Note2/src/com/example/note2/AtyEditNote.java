@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.note2.MeidaPut;
-
-import ECSConnecter.TopicConnecter;
-import android.R.integer;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.ContentValues;
@@ -18,12 +14,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -158,20 +152,19 @@ public class AtyEditNote extends ListActivity {
 
 			int putPosition = (int) getListAdapter().getItemId(info.position);
 			MediaListCellData d = adapter.getItem(putPosition);
-			System.out.println("-------------------"+d.path+"");
 			String path = d.path.toString();
 			String fileName = path.substring(path.length()-17, path.length());
 			String fileNameWithoutWav = path.substring(path.length()-17, path.length()-4);
-			System.err.println(fileNameWithoutWav);
 			
 			MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
 			media.upload();
+			
 			//Toast.makeText(AtyEditNote.this, MeidaPut.msg.getData().getString("result"), Toast.LENGTH_SHORT).show();
-			Toast.makeText(AtyEditNote.this,media.getResult(), Toast.LENGTH_LONG).show();
+			Toast.makeText(AtyEditNote.this,"上传成功", Toast.LENGTH_LONG).show();
 			
 			break;
 		case R.id.delete:
-			Toast.makeText(AtyEditNote.this, "delete", Toast.LENGTH_LONG)
+			Toast.makeText(AtyEditNote.this, info.position+"", Toast.LENGTH_LONG)
 					.show();
 			int position = (int) getListAdapter().getItemId(info.position);
 			MediaListCellData data = adapter.getItem(position);
