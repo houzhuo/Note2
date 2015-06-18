@@ -1,33 +1,55 @@
 package com.example.note2;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.widget.Toast;
 
-public class NetCheckService extends Service implements Runnable {
+public class NetCheckService extends Service  {
+	private Handler handler;
+	private Runnable runnable;
+	
+	public class LocalBinder extends Binder{
+		NetCheckService getService(){
+			return NetCheckService.this;
+		}
+	}
 
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
-		return null;
+		return mBinder;
 	}
+	private IBinder mBinder = new LocalBinder();
 	
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		Thread t = new Thread();
-		t.start();
+		
+		
+		handler = new Handler(Looper.getMainLooper());
+		runnable = new  Runnable() {
+			public void run() {
+				isOpenNetwork();
+				handler.postDelayed(this, 3000);
+			}
+		};
+		handler.postDelayed(runnable, 3000);
+		
 		
 	}
-	 
+	
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		// TODO Auto-generated method stub
+		return super.onStartCommand(intent, flags, startId);
+	}
 	
 	@Override
 	@Deprecated
@@ -42,11 +64,7 @@ public class NetCheckService extends Service implements Runnable {
 		super.onDestroy();
 	}
 	
-	public class localService extends Binder{
-		 NetCheckService getService(){
-			return NetCheckService.this;
-		}
-	}
+	
 	/** 
 	 * 对网络连接状态进行判断 
 	 * @return  true, 可用； false， 不可用 
@@ -62,18 +80,5 @@ public class NetCheckService extends Service implements Runnable {
 	    return false; 
 	} 
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		Toast.makeText(this, "Play Service Created", Toast.LENGTH_LONG).show();
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				isOpenNetwork();
-			}
-		} , 0, 2000);
-	}
+
 }

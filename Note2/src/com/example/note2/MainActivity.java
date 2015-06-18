@@ -47,6 +47,7 @@ public class MainActivity extends ListActivity {
 	private SwipeMenuListView mListView;
 	private int itemId;
 
+	private NetCheckService mNetCheckService;
 	private OnItemClickListener btnMenuList_clickHandler = new OnItemClickListener() {
 
 		@Override
