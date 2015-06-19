@@ -356,8 +356,11 @@ public class IatDemo extends Activity implements Runnable {
 		FlowerCollector.onPause(this);
 		super.onPause();
 	}
-
+private String contentString;
 	public void onBackPressed() {
+		 contentString = mResultText.getText().toString();
+		 System.out.println("+++++++++++++++++++++++++++++");
+		System.out.println("-----------------------"+contentString+"");
 		new AlertDialog.Builder(this)
 				.setTitle("是否保存当前音频？")
 				.setIcon(android.R.drawable.ic_dialog_info)
@@ -365,33 +368,39 @@ public class IatDemo extends Activity implements Runnable {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+						
+						if (contentString.isEmpty()) {
+							finish();
+							
+						}else {
 
-						// 点击“确认”后的操作
-						Toast.makeText(IatDemo.this, "音频保存成功",
-								Toast.LENGTH_LONG).show();
-						pcm2wav();
-						// 把地址推送到ActivityForResult
-						Intent intent = new Intent();
-						intent.putExtra(VOICE_EXTRA_PATH, wavPath.toString());
-						intent.putExtra(VOICE_EXTRA_CONTENT, mResultText
-								.getText().toString());
-
-						Thread t = new Thread(IatDemo.this);
-						t.start();
-						try {
-							t.sleep(600);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							// 点击“确认”后的操作
+							Toast.makeText(IatDemo.this, "音频保存成功",
+									Toast.LENGTH_LONG).show();
+							pcm2wav();
+							// 把地址推送到ActivityForResult
+							Intent intent = new Intent();
+							intent.putExtra(VOICE_EXTRA_PATH, wavPath.toString());
+							intent.putExtra(VOICE_EXTRA_CONTENT, mResultText
+									.getText().toString());
+							
+							Thread t = new Thread(IatDemo.this);
+							t.start();
+							try {
+								t.sleep(600);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							System.out.println("topicList " + topicList + "");
+							// tvTopic.setText(list+"");
+							intent.putExtra(VOICE_EXTRA_TOPIC,topicList+"");
+							//
+							
+							setResult(3, intent);
+							finish();
 						}
-
-						System.out.println("topicList " + topicList + "");
-						// tvTopic.setText(list+"");
-						 intent.putExtra(VOICE_EXTRA_TOPIC,topicList+"");
-						//
-
-						setResult(3, intent);
-						finish();
 
 					}
 				})
