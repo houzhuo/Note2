@@ -45,8 +45,7 @@ public class AtyEditNote extends ListActivity {
 	private ArcMenu arcMenu;
 
 	private ListView mListView;
-	
-	
+
 	private Handler handler;
 
 	@Override
@@ -138,7 +137,6 @@ public class AtyEditNote extends ListActivity {
 		inflater.inflate(R.menu.context, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
-	
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
@@ -153,23 +151,26 @@ public class AtyEditNote extends ListActivity {
 			int putPosition = (int) getListAdapter().getItemId(info.position);
 			MediaListCellData d = adapter.getItem(putPosition);
 			String path = d.path.toString();
-			String fileName = path.substring(path.length()-17, path.length());
-			String fileNameWithoutWav = path.substring(path.length()-17, path.length()-4);
-			
-			MeidaPut media = new MeidaPut(path,fileName,fileNameWithoutWav);
+			String fileName = path.substring(path.length() - 17, path.length());
+			String fileNameWithoutWav = path.substring(path.length() - 17,
+					path.length() - 4);
+
+			MeidaPut media = new MeidaPut(path, fileName, fileNameWithoutWav);
 			media.upload();
-			
-			//Toast.makeText(AtyEditNote.this, MeidaPut.msg.getData().getString("result"), Toast.LENGTH_SHORT).show();
-			Toast.makeText(AtyEditNote.this,"上传成功", Toast.LENGTH_LONG).show();
-			
+
+			// Toast.makeText(AtyEditNote.this,
+			// MeidaPut.msg.getData().getString("result"),
+			// Toast.LENGTH_SHORT).show();
+			Toast.makeText(AtyEditNote.this, "上传成功", Toast.LENGTH_LONG).show();
+
 			break;
 		case R.id.delete:
-			Toast.makeText(AtyEditNote.this, info.position+"", Toast.LENGTH_LONG)
-					.show();
+
 			int position = (int) getListAdapter().getItemId(info.position);
 			MediaListCellData data = adapter.getItem(position);
 			adapter.delete(position);
 			adapter.notifyDataSetChanged();
+			
 			dbWrite.delete(NotesDB.TABLE_NAME_MEDIA,
 					NotesDB.COLUMN_NAME_MEDIA_PATH + "=?",
 					new String[] { data.path + "" });

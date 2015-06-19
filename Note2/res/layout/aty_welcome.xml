@@ -5,7 +5,7 @@
      >
     <ImageView android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/image_welcome"/>
+        android:background="@drawable/ic_bg"/>
 
     <TextView
         android:id="@+id/textView1"
@@ -24,7 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
-        android:text="精彩智能生活"
+        android:text="iNotes"
         android:textSize="30dp"
         android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
