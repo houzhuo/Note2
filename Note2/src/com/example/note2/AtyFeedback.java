@@ -28,8 +28,8 @@ public class AtyFeedback extends Activity implements OnClickListener {
 		findViewById(R.id.ic_feedback_back).setOnClickListener(btnback_onclickHandler);
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		contact = (EditText) findViewById(R.id.feedback_content_edit);
-		contact = (EditText) findViewById(R.id.feedback_contact_edit);
+		content = (EditText) findViewById(R.id.feedback_content_edit);
+		name = (EditText) findViewById(R.id.feedback_name_edit);
 		
 	}
 
@@ -37,16 +37,22 @@ public class AtyFeedback extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-		String etcontact = contact.getText().toString();
-		String etcontent = content.getText().toString();
+//		String etcontact = contact.getText().toString();
+//		String etcontent = content.getText().toString();
 		
-		if (etcontact.isEmpty() && etcontent.isEmpty()) {
-			Toast.makeText(getApplicationContext(), "用户名或密码不能为空",
+		if (name.getText().toString().isEmpty() || content.getText().toString().isEmpty()) {
+			Toast.makeText(getApplicationContext(), "意见和联系方式不能为空",
 					Toast.LENGTH_SHORT).show();
-		}
-		Toast.makeText(getApplicationContext(), "谢谢您的宝贵意见", Toast.LENGTH_LONG).show();
+		} else
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		Toast.makeText(getApplicationContext(), "提交成功", Toast.LENGTH_LONG).show();
 	}
 	
 	private EditText content;
-	private EditText contact;
+	private EditText name;
 }

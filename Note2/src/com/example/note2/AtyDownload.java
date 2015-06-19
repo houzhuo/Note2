@@ -6,19 +6,25 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.example.note2.AtyEditNote.MediaListCellData;
 import com.example.note2.db.NotesDB;
 
 public class AtyDownload extends ListActivity {
 
 	private SimpleCursorAdapter adapter;
-	private SQLiteDatabase dbRead;
+	private SQLiteDatabase dbRead,dbWrite;
 	private NotesDB db;
+	private String itemId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,7 @@ public class AtyDownload extends ListActivity {
 
 		db = new NotesDB(this);
 		dbRead = db.getReadableDatabase();
+		dbWrite = db.getWritableDatabase();
 		
 		adapter = new SimpleCursorAdapter(this,
 				R.layout.download_media_list_cell, null,
@@ -47,7 +54,49 @@ public class AtyDownload extends ListActivity {
 				finish();
 			}
 		});
+		registerForContextMenu(getListView());
 	}
+	
+	
+	
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		// 加载xml中的上下文菜单
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.download_delete, menu);
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case  R.id.download_delete:
+					
+			Cursor cursor = adapter.getCursor();
+			itemId = cursor.getString(cursor
+					.getColumnIndex(NotesDB.COLUMN_NAME_DOWNLOAD_PATH));
+			System.out.println(itemId+"");
+			
+			dbWrite.delete(NotesDB.TABLE_NAME_DOWNLOAD,
+					NotesDB.COLUMN_NAME_DOWNLOAD_PATH + "=?",
+					new String[] { itemId + "" });
+			adapter.notifyDataSetChanged();
+			refreshNotesListView();
+			
+			break;
+
+		default:
+			break;
+		}
+		
+		return super.onContextItemSelected(item);
+			
+	}
+	
+	
+	
 	public void refreshNotesListView() {
 
 		adapter.changeCursor(dbRead.query(NotesDB.TABLE_NAME_DOWNLOAD, null, null,

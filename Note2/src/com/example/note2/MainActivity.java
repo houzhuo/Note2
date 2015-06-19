@@ -58,23 +58,32 @@ public class MainActivity extends ListActivity {
 			 */
 			
 			switch (position) {
+			case 5:
+				System.exit(0);
+				break;
 			case 4:
 				Intent i = new Intent(MainActivity.this, AtySettings.class);
 				startActivity(i);
 				break;
 			case 3:
-				Intent loginIntent = new Intent(MainActivity.this,
-						AtyCloud.class);
-				startActivity(loginIntent);
+				Intent feedIntent = new Intent(MainActivity.this,
+						AtyFeedback.class);
+				startActivity(feedIntent);
 				break;
 			case 2:
-				Intent feedbackIntent = new Intent(MainActivity.this,
-						AtyFeedback.class);
-				startActivity(feedbackIntent);
+				Intent upLoadIntent = new Intent(MainActivity.this,
+						AtyCloud.class);
+				startActivity(upLoadIntent);
+				break;
+			case 1:
+				Intent userIntent = new Intent(MainActivity.this,
+						AtyUser.class);
+				startActivity(userIntent);
 				break;
 			case 0:
-				Intent usrIntent = new Intent(MainActivity.this, AtyUser.class);
-				startActivity(usrIntent);
+				mDrawerLayout.closeDrawer(mDrawList);
+//				Intent usrIntent = new Intent(MainActivity.this, MainActivity.class);
+//				startActivity(usrIntent);
 				break;
 
 			default:
@@ -217,10 +226,11 @@ public class MainActivity extends ListActivity {
 
 		String[] mTitle = getResources().getStringArray(R.array.item_title);
 		int[] itemIconRes = { R.drawable.ic_drawer_home,
-				R.drawable.ic_drawer_collect,
-				R.drawable.ic_drawer_cloud,
 				R.drawable.ic_drawer_count,
-				R.drawable.ic_drawer_setting
+				R.drawable.ic_drawer_cloud,
+				R.drawable.ic_drawer_feedback,
+				R.drawable.ic_drawer_setting,
+				R.drawable.ic_drawer_exit
 
 		};
 		for (int i = 0; i < itemIconRes.length; i++) {
@@ -353,7 +363,7 @@ public class MainActivity extends ListActivity {
 
 		super.onListItemClick(l, v, position, id);
 	}
-	
+		
 	
 	
 

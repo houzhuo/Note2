@@ -28,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
@@ -88,8 +89,11 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 		
 		findViewById(R.id.ic_cloud_download).setOnClickListener(this);
 		
+		
 	}
 
+	
+	
 	public void updateList() {
 		isRun = true;
 
@@ -185,8 +189,10 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 				System.err.println(data.get(i).getFilename());
 				bundle.putString("filename" + i, data.get(i).getFilename());
 				bundle.putString("large" + i,
-						Integer.parseInt(data.get(i).getLength()) / 1024
-								/ 1024 + "M");
+						String.format("%.2f", Double.valueOf(data.get(i).getLength()) / 1024.0
+						/ 1024.0) + "M");
+//				Integer.parseInt(data.get(i).getLength()) / 1024.0
+//				/ 1024.0 + "M");
 			}
 			m.setData(bundle); // 将Bundle对象保存到Message中
 			handler.sendMessage(m); // 发送消息

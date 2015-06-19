@@ -52,7 +52,7 @@
             android:textSize="18.0sp" />
 
         <EditText
-            android:id="@+id/feedback_contact_edit"
+            android:id="@+id/feedback_name_edit"
             android:layout_width="fill_parent"
             android:layout_height="48.0dp"
             android:layout_marginTop="10.0dp"
