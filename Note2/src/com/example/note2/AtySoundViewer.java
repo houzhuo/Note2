@@ -86,6 +86,7 @@ public class AtySoundViewer extends Activity {
 	class ClickEvent implements View.OnClickListener {
 		public void onClick(View v) {
 			String path = getIntent().getStringExtra(EXTRA_PATH);
+			System.out.println("soundPath---"+path);
 			switch (v.getId()) {
 			
 			

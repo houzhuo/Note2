@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.example.note2.db.NotesDB;
 
@@ -64,10 +65,11 @@ public class AtyDownload extends ListActivity {
 		c.moveToPosition(position);
 		Intent i;
 		i = new Intent(this, AtySoundViewer.class);
+		Toast.makeText(getApplicationContext(), c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_DOWNLOAD_PATH))+"", Toast.LENGTH_SHORT).show();
+		System.out.println("-----"+c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_DOWNLOAD_PATH))+"");
 		i.putExtra(AtySoundViewer.EXTRA_PATH, c.getString(c.getColumnIndex(NotesDB.COLUMN_NAME_DOWNLOAD_PATH)));
 		i.putExtra(AtySoundViewer.EXTRA_CONTENT, " ");
 		
-
 		startActivity(i);
 		
 		

@@ -104,7 +104,7 @@ public class MeidaPut extends Thread{
 	
 	public static void uptest(String path,String object, String fileName) throws NoSuchAlgorithmException, IOException {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("contentType", "text/plain");
+		map.put("contentType", "audio/wav");
 		map.put("objectKey", "10000000/"+object);
 		map.put("contentLength", Long.toString(new File(path).length()));
 		UploadConnecter upconnecter = new UploadConnecter(map);

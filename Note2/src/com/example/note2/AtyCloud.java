@@ -99,9 +99,9 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 		handler = new Handler() { // 这个handler发送的Message会被传递给主线程的MessageQueue。
 			public void handleMessage(Message msg) { // 回调
 				if (msg.what == 1) {
-
-					int i = 0;
-					for (i = 0; i < dataSize; i++) {
+					
+					int i = dataSize;
+					for (i = dataSize-1; i >1; i--) {
 						String filename = msg.getData().getString(
 								"filename" + i);
 						String large = msg.getData().getString("large" + i);
@@ -142,9 +142,9 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 			CloudMediaListCellData d = (CloudMediaListCellData)adapter.getItem(info.position - 1);
 			
 			System.out.println("-------------------"+d.name+"");
-			String filename = d.name;
-			String filenameWithWav = d.name.substring(filename.length()-4);
-			MediaGet mediaGet = new MediaGet(filename, filenameWithWav);
+			String filenameWithOutWav = d.name;
+			String filename = d.name+".wav";
+			MediaGet mediaGet = new MediaGet(filename, filenameWithOutWav);
 			mediaGet.downloadMedia();
 			
 			break;
@@ -164,7 +164,7 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("userCode", "10000000");
 			map.put("page", "1");
-			map.put("number", "10");
+			map.put("number", "30");
 
 			CloudConnecter cloudconn = new CloudConnecter(map);
 			try {
@@ -315,14 +315,14 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 	class MediaGet extends Thread{
 		
 		private String filename;
-		private String filenameWithWav;
+		private String filenameWithOutWav;
 		private NotesDB dowloadDb;
 		private SQLiteDatabase dbWrite;
 		private String path;
 		
-		public MediaGet(String filename,String filenameWithWav){
+		public MediaGet(String filename,String filenameWithOutWav){
 			this.filename = filename;
-			this.filenameWithWav = filenameWithWav;
+			this.filenameWithOutWav = filenameWithOutWav;
 		}
 		
 		public void downloadMedia(){
@@ -362,7 +362,7 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 		
 		public File getMediaDir() {
 			File dir = new File(Environment.getExternalStorageDirectory(),
-					"NotesMedia");
+					"NotesMediaDownload");
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
@@ -381,7 +381,7 @@ public class AtyCloud extends ListActivity implements Runnable, OnClickListener 
 				 path = new File(getMediaDir(),filename).toString();
 				
 				Map<String, String> map = new HashMap<String, String>();
-				map.put("filename", filenameWithWav);
+				map.put("filename", filenameWithOutWav);
 				map.put("fileLength", Long.toString(new File(getMediaDir(),path).length()));
 				map.put("userCode", "10000000");
 				DownloadConnecter downconnecter = new DownloadConnecter(map);

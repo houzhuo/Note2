@@ -156,7 +156,7 @@ public class AtyEditNote extends ListActivity {
 			String fileName = path.substring(path.length()-17, path.length());
 			String fileNameWithoutWav = path.substring(path.length()-17, path.length()-4);
 			
-			MeidaPut media = new MeidaPut(path,fileNameWithoutWav,fileName);
+			MeidaPut media = new MeidaPut(path,fileName,fileNameWithoutWav);
 			media.upload();
 			
 			//Toast.makeText(AtyEditNote.this, MeidaPut.msg.getData().getString("result"), Toast.LENGTH_SHORT).show();
