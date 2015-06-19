@@ -202,7 +202,7 @@ public class AtyEditNote extends ListActivity {
 							e.printStackTrace();
 						}
 					}
-					currentPath = f.getAbsolutePath();
+					//currentPath = f.getAbsolutePath();
 					imagePath = Uri.fromFile(f);
 					i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));// 媒体输出路径,存储位置
 					startActivityForResult(i, REQUEST_CODE_GET_PHOTO);
@@ -219,7 +219,7 @@ public class AtyEditNote extends ListActivity {
 							e.printStackTrace();
 						}
 					}
-					currentPath = f.getAbsolutePath();
+					//currentPath = f.getAbsolutePath();
 					videoPath = Uri.fromFile(f);
 					i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
 
@@ -272,24 +272,24 @@ public class AtyEditNote extends ListActivity {
 			 * System.out.println("onListItemClick.path:" + data.path);
 			 * startActivity(i); break;
 			 */
-
+			Uri imageUri = Uri.parse(data.path); 
+			System.err.println(imageUri);
 			// 使用Intent
 			Intent imageIntent = new Intent(Intent.ACTION_VIEW);
 			// Uri mUri = Uri.parse("file://" +
 			// picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
-			imageIntent.setDataAndType(imagePath, "image/*");
+			imageIntent.setDataAndType(imageUri.normalizeScheme(), "image/*");
 			startActivity(imageIntent);
 			break;
 		case MediaType.VIDEO:
-			/*
-			 * i = new Intent(this, AtyVideoViewer.class);
-			 * i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
-			 * startActivity(i);
-			 */
+			
+			/*  i = new Intent(this, AtyVideoViewer.class);
+			  i.putExtra(AtyVideoViewer.EXTRA_PATH, data.path);
+			 startActivity(i);*/
+			Uri videoUri = Uri.parse(data.path); 
+			System.err.println(videoUri);
 			Intent videoIntent = new Intent(Intent.ACTION_VIEW);
-			// Uri mUri = Uri.parse("file://" +
-			// picFile.getPath());Android3.0以后最好不要通过该方法，存在一些小Bug
-			videoIntent.setDataAndType(videoPath, "video/*");
+			videoIntent.setDataAndType(videoUri, "video/*");
 			startActivity(videoIntent);
 			break;
 
@@ -318,7 +318,7 @@ public class AtyEditNote extends ListActivity {
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData("Photos", Date, currentPath,
+				adapter.add(new MediaListCellData("Photos", Date, imagePath.toString(),
 						"no media content"));
 				adapter.notifyDataSetChanged();
 				/*
@@ -334,7 +334,7 @@ public class AtyEditNote extends ListActivity {
 						DateFormat.LONG, DateFormat.SHORT); // 显示日期，时间（精确到分）
 				String Date = date.format(new Date());
 
-				adapter.add(new MediaListCellData("Videos", Date, currentPath,
+				adapter.add(new MediaListCellData("Videos", Date, videoPath.toString(),
 						"no media content"));
 				adapter.notifyDataSetChanged();
 				/*
