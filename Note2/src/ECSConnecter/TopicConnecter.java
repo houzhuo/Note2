@@ -14,7 +14,7 @@ import XMLReader.TopicData;
 import XMLReader.TopicXMLReader;
 
 public class TopicConnecter {
-	private final String HOST = "http://121.199.57.37:8081/Voice_Note/topic.php";
+	private final String HOST = "http://114.215.148.169:8083/topic.php";
 	private final String function = "topic";
 	private String xml;
 	private TopicData data;

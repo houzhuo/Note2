@@ -16,7 +16,7 @@ public class UploadConnecter extends Connecter{
 	/**
 	 * the url of manage file on server
 	 */
-	private final String HOST = "http://121.199.57.37:8081/Voice_Note/upload.php";
+	private final String HOST = "http://114.215.148.169:8083/upload.php";
 	/**
 	 * function name
 	 */

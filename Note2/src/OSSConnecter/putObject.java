@@ -25,7 +25,7 @@ public class putObject {
 		this.path = path;
 		this.HOST = "http://"
 				+ data.getBucket()
-				+ ".oss-cn-shenzhen.aliyuncs.com/";
+				+ ".oss-cn-qingdao.aliyuncs.com/";
 	}
 	
 	public FileEntity openFile() {

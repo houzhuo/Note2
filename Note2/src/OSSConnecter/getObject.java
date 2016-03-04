@@ -25,7 +25,7 @@ public class getObject {
 		this.path = path;
 		this.HOST = "http://"
 				+ data.getBucket()
-				+ ".oss-cn-shenzhen.aliyuncs.com/";
+				+ ".oss-cn-qingdao.aliyuncs.com/";
 	}
 	
 	public void saveToFile(HttpResponse response) throws IllegalStateException, IOException {

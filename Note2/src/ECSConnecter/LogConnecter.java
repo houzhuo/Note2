@@ -16,7 +16,7 @@ public class LogConnecter extends Connecter{
 	/**
 	 * the url manage file on servicer
 	 */
-	private final String HOST = "http://121.199.57.37:8081/Voice_Note/log.php";
+	private final String HOST = "http://114.215.148.169:8083/log.php";
 	/**
 	 * function name
 	 */

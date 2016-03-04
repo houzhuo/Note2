@@ -9,7 +9,7 @@ import XMLReader.SigninData;
 import XMLReader.SigninXMLReader;
 
 public class SigninConnecter extends Connecter{
-	private final String HOST = "http://121.199.57.37:8081/Voice_Note/signin.php";
+	private final String HOST = "http://114.215.148.169:8083/register.php";
 	private final String function = "signin";
 	private String xml = null;
 	private SigninData data;

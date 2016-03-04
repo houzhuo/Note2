@@ -43,7 +43,7 @@ public class AtyDowload extends Activity implements Runnable {
 		adapter = new CloudAdapter(this);
 		mListView.setAdapter(adapter);
 		
-		findViewById(R.id.cloud_refresh).setOnClickListener(new OnClickListener() {
+		findViewById(R.id.list_view).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

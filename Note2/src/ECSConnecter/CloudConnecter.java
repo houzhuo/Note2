@@ -18,7 +18,7 @@ public class CloudConnecter extends Connecter{
 	/**
 	 * the url of manage file on server
 	 */
-	private final String HOST = "http://121.199.57.37:8081/Voice_Note/cloud.php";
+	private final String HOST = "http://114.215.148.169:8083/cloud.php";
 	/**
 	 * function name
 	 */

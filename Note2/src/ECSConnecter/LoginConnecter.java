@@ -9,7 +9,7 @@ import XMLReader.LoginData;
 import XMLReader.LoginXMLReader;
 
 public class LoginConnecter extends Connecter{
-	private final String HOST = "http://121.199.57.37:8081/Voice_Note/login.php";
+	private final String HOST = "http://114.215.148.169:8083/landing.php";
 	private final String function = "login";
 	private String  xml = null;
 	private LoginData data = null;
